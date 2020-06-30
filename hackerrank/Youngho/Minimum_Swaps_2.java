@@ -13,23 +13,17 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the minimumSwaps function below.
-    static int minimumSwaps(int[] arr) {
+    static int minimumSwaps(int[] arr) {        
         int len = arr.length;
-        int min = 0;
         int count = 0;
-        int index = 0;
-        for(int i=0; i<len-1; i++){
-            min = arr[i];
-            for(int j=i+1; j<len; j++){
-                if(min > arr[j]){
-                    min = arr[j];
-                    index = j;
-                }
-            }
-            if(min < arr[i]){
+        //2중 for문을 써서 selection sort를 써도 되는데, 몇개 케이스는 타임오버가 난다.
+        //조건을 더 걸 수도 없다. 그러면 sort자체가 틀렸다는거니까 새로운 규칙을 찾자.
+        for(int i=0; i<len; i++){
+            //Idea : 계속 첫번째인자를 바꾸다가 첫 인자가 1이면 2번째 인자를 계속 바꾼다.
+            while(arr[i] != i+1){   
                 int temp = arr[i];
-                arr[i] = arr[index];
-                arr[index] = temp;
+                arr[i] = arr[arr[i]-1];
+                arr[temp-1] = temp; //여기에 temp-1을 써줘야한다. 윗줄에서 arr[i] 값이 바뀌었으니까.
                 count++;
             }
         }
