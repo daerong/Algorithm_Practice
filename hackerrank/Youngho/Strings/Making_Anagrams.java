@@ -1,5 +1,7 @@
-link : https://www.hackerrank.com/challenges/ctci-making-anagrams/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=strings
-time : 실패 0202.07.01
+//link : https://www.hackerrank.com/challenges/ctci-making-anagrams/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=strings
+//time : 실패 0202.07.01
+//비고 : 원래는 문자열 비교로 가려고 했으나 구성이 너무 길어 의도와는 출제 다르다고 생각.
+//       참고로 문자열 비교는 contains, indexOf, matches(정규식검색) 을 쓸 수 있다.
 
 import java.io.*;
 import java.math.*;
