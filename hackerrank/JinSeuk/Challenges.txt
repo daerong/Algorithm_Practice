@@ -1,0 +1,20 @@
+ SELECT A.hacker_id
+       ,A.name
+       ,CASE WHEN ISNULL(B.hacker_id,0) = 0 THEN 0 ELSE COUNT(1) END AS COUNT
+   FROM Hackers    AS A
+   LEFT OUTER JOIN challenges AS B ON A.hacker_id = b.hacker_id
+  GROUP BY A.hacker_id,A.name,B.hacker_id
+  HAVING COUNT(1) NOT IN (SELECT C.Count
+                            FROM (
+                                   SELECT A.COUNT,COUNT(1) AS D_Count,ROW_NUMBER() OVER (ORDER BY A.COUNT DESC) AS Row
+                                     FROM (
+                                            SELECT COUNT(1) AS COUNT
+                                              FROM Hackers    AS A
+                                              JOIN challenges AS B ON A.hacker_id = b.hacker_id
+                                             GROUP BY A.hacker_id,A.name
+                                          ) AS A
+                                    GROUP BY A.COUNT
+                                 ) AS C
+                           WHERE (Row <> 1 AND D_Count > 1) 
+                         )
+  ORDER BY COUNT(1) DESC
