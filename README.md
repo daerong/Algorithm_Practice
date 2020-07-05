@@ -1,3 +1,4 @@
+
 ## Greedy Method
 
 **탐욕 알고리즘이란?**
@@ -21,14 +22,14 @@
 
 >**Activity-Selection Problem**
 > classroom assignment(교실할당)로도 불리는 한정된 교실에서 최대 수업을 배정하는 문제
-	시간 복잡도는 O(n)
+> 시간 복잡도는 O(n)
 	
 > **Huffman Coding**
 > 허프만 코딩이란 Greedy Method을 사용해 데이터를 압축하는 기법
 > 시간 복잡도는 O(nlog n)
 
 참고문서
-*https://ratsgo.github.io/data%20structure&algorithm/2017/11/22/greedy/*
+[https://ratsgo.github.io/data%20structure&algorithm/2017/11/22/greedy/](https://ratsgo.github.io/data%20structure&algorithm/2017/11/22/greedy/)
 
 ## Kruskal (MST, Minimal Spanning Tree)
 
@@ -72,5 +73,5 @@ Spanning Tree의 합을 최소로 하는 MST(Minimal Spanning Tree)를 만들기
 	- 즉, Edge가 n개일 때, 퀵 정렬과 같은 효율적인 알고리즘으로 정렬했을 때 O(nlog n)의 시간 복잡도를 갖는다.
 	
 참고문서
-_https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html_
-*https://yabmoons.tistory.com/186*
+[https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html](https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html)
+[https://yabmoons.tistory.com/186](https://yabmoons.tistory.com/186)
