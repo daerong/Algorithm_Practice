@@ -1,4 +1,3 @@
-
 ## Greedy Method
 
 **탐욕 알고리즘이란?**  
@@ -71,6 +70,9 @@ Spanning Tree의 합을 최소로 하는 MST(Minimal Spanning Tree)를 만들기
 - O(nlog n)  
 	- union-find 알고리즘을 이용하면 Kruskal 알고리즘의 시간 복잡도는 Edge를 정렬하는 시간에 좌우된다.  
 	- 즉, Edge가 n개일 때, 퀵 정렬과 같은 효율적인 알고리즘으로 정렬했을 때 O(nlog n)의 시간 복잡도를 갖는다.  
+
+예제  
+[SW Expert Acdemy 1251번](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_1251_U.cpp)  
 	
 참고문서  
 [https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html](https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html)  
