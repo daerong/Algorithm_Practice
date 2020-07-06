@@ -1,3 +1,4 @@
+
 ## Greedy Method
 
 **탐욕 알고리즘이란?**  
@@ -30,14 +31,11 @@
 참고문서  
 [https://ratsgo.github.io/data%20structure&algorithm/2017/11/22/greedy/](https://ratsgo.github.io/data%20structure&algorithm/2017/11/22/greedy/)
 
-## Kruskal (MST, Minimal Spanning Tree)
+## Kruskal's Algorithm (MST)  
 
 **크루스칼이란?**  
 Spanning Tree의 합을 최소로 하는 MST(Minimal Spanning Tree)를 만들기 위한 방법이다.  
 탐욕적인 방법(Greedy Method) 을 이용한다.  
-
->**Graph**  
->그래프는 Vertex라고 불리는 정점(Node)과, Edge로 불리는 간선들의 조합으로 이루어져있다.  
 
 >**Spanning Tree(스패닝 트리)**  
 >방향이 없는 그래프에서 모든 Node를 포함하면서 Cycle을 이루지 않는 경우 Spanning Tree라고 한다.  
@@ -51,13 +49,16 @@ Spanning Tree의 합을 최소로 하는 MST(Minimal Spanning Tree)를 만들기
 >- 탐욕적인 방법은 그 순간에는 최적이지만, 전체적인 관점에서 최적이라는 보장이 없기 때문에 반드시 검증해야 한다.  
 >- 다행히 Kruskal 알고리즘은 최적의 해답을 주는 것으로 증명되어 있다.  
 
-**크루스칼의 동작**  
-1. 그래프의 간선들을 가중치의 오름차순으로 정렬한다.  
+**[크루스칼의 동작](https://ko.wikipedia.org/wiki/%ED%81%AC%EB%9F%AC%EC%8A%A4%EC%BB%AC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)**  
+1. Graph의 Edge들을 가중치의 오름차순으로 정렬한다.  
 2. 가중치가 가장 작은 Edge을 선택한다.  
-	- Cycle을 만드는 경우 무시한다.  
+	Cycle을 만드는 경우 무시한다.  
 3. 두개의 Node를 서로 연결한다.  
-	- Edge가 이미 형성된 경우 무시한다.  
+	Edge가 이미 형성된 경우 무시한다.  
 4. 위 과정을 반복한다.  
+
+>**Graph**  
+>그래프는 Vertex라고 불리는 정점(Node)과, Edge로 불리는 간선들의 조합으로 이루어져있다.  
 
 >**주의사항**  
 >- 새로운 Edge가 이미 연결되어 있는 Node들에 연결될 때 Cycle이 형성된다.  
@@ -75,5 +76,43 @@ Spanning Tree의 합을 최소로 하는 MST(Minimal Spanning Tree)를 만들기
 [SW Expert Acdemy 1251번](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_1251_U.cpp)  
 	
 참고문서  
+[https://ko.wikipedia.org/wiki/%ED%81%AC%EB%9F%AC%EC%8A%A4%EC%BB%AC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98](https://ko.wikipedia.org/wiki/%ED%81%AC%EB%9F%AC%EC%8A%A4%EC%BB%AC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)  
 [https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html](https://gmlwjd9405.github.io/2018/08/29/algorithm-kruskal-mst.html)  
 [https://yabmoons.tistory.com/186](https://yabmoons.tistory.com/186)  
+
+## Prim's Algorithm (MST)  
+
+**프림 알고리즘이란?**  
+Kruskal Algorithm과 같은 MST(Minimal Spanning Tree)를 만들기 위한 방법이다.
+탐욕적인 방법(Greedy Method)을 이용한다.  
+
+>**Spanning Tree(스패닝 트리)**  
+>방향이 없는 그래프에서 모든 Node를 포함하면서 Cycle을 이루지 않는 경우 Spanning Tree라고 한다.  
+
+> **MST(Minimal Spanning Tree, 최소 비용 신장 트리)**  
+>1. Spanning Tree 조건을 충족  
+>2. Edge의 합이 최소  
+
+>**Greedy Method**  
+>- 결정을 해야 할 때마다 그 순간에 가장 좋다고 생각되는 것을 선택함으로써 최종적인 해답에 도달하는 것  
+>- 탐욕적인 방법은 그 순간에는 최적이지만, 전체적인 관점에서 최적이라는 보장이 없기 때문에 반드시 검증해야 한다.  
+>- 다행히 Kruskal 알고리즘은 최적의 해답을 주는 것으로 증명되어 있다.  
+
+**[프림 알고리즘의 동작](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A6%BC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)**  
+1. Graph의 한 Node를 선택한다.  
+2. Node에 연결된 가중치가 가장 작은 Edge를 선택한다.  
+3. 양 끝 Node에 연결된 가중치가 가장 작은 Edge를 선택한다.  
+	Node에 연결된 Edge가 두개인 경우, 끝 점이 아니다.  
+4. 2로 돌아가 반복한다.  
+	모든 정점이 연결될 때까지 반복한다.  
+
+**크루스칼 vs 프림 비교**  
+크루스칼과 프림 모두 가중치가 낮은 간선(Edge)을 선택한다. 즉, 순간의 최선을 선택하는 Greedy Method를 이용한다.  
+| 크루스칼 | 프림 |
+|--|--|
+| 크루스칼의 경우에는 간선(Edge)의 가중치를 오름차순으로 정렬한 뒤, 순차적으로 선택하여 MST를 만든다. | 프림의 경우에는 양 끝단의 Node(정점)을 통해 가중치가 낮은 간선을 이어붙이며 MST를 만든다. |
+  
+참고문서  
+[https://ko.wikipedia.org/wiki/%ED%94%84%EB%A6%BC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A6%BC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)  
+[https://m.blog.naver.com/PostView.nhn?blogId=kimmy5000&logNo=220635475967&proxyReferer=https:%2F%2Fwww.google.com%2F](https://m.blog.naver.com/PostView.nhn?blogId=kimmy5000&logNo=220635475967&proxyReferer=https:%2F%2Fwww.google.com%2F)  
+
