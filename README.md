@@ -113,17 +113,13 @@ Kruskal Algorithm과 같은 MST(Minimal Spanning Tree)를 만들기 위한 방�
 | Kruskal| Prim |
 |--|--|
 | 크루스칼의 경우에는 간선(Edge)의 가중치를 오름차순으로 정렬한 뒤, 순차적으로 선택하여 MST를 만든다. | 프림의 경우에는 양 끝단의 Node(정점)을 통해 가중치가 낮은 간선을 이어붙이며 MST를 만든다. |
-- O(Elog N)  
-	- Edge 정렬 : O(Elog E)  
-	- Union-FInd : O(Elog N)  
-	-  O(Nlog N + Elog N) = O(Elog N)  
 
 **프림의 시간 복잡도**   
 - O(Elog N)  
 	- Extract-Min : O(Nlog N)  
-	- Search and Decrease-Key : O(Elog N)
-	- O(Nlog N + Elog N) = O(Elog N)
-- O(E + logN)
+	- Search and Decrease-Key : O(Elog N)  
+	- O(Nlog N + Elog N) = O(Elog N)  
+- O(E + logN)  
 	- 피보나치 힙 사용 시 
 
 >**Extract-Min**  
@@ -131,7 +127,7 @@ Kruskal Algorithm과 같은 MST(Minimal Spanning Tree)를 만들기 위한 방�
 >Extract-Max : 가장 큰 요소를 반환한 후, 삭제한다.  
 
 >**Search and Decrease-Key**  
->Search : 트리의 길이(Node 수)만큼 탐색(O(log N))해야한다.
+>Search : 트리의 길이(Node 수)만큼 탐색(O(log N))해야한다.  
 >Decrease-Key : 모든 Node에 대해 Edge 가중치 업데이트(O(E/Vlog V))가 실행되므로 O(E logV)의 시간복잡도를 갖는다.  
 
 >**Fibonacci heap(피보나치 힙)**  
