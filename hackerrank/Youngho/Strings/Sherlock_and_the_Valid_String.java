@@ -1,6 +1,7 @@
 //link : https://www.hackerrank.com/challenges/sherlock-and-valid-string/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=strings&h_r=next-challenge&h_v=zen
-//try : 1
-//비고 : 11개 okay, but 4개 case 예외 발생
+//try : 2
+//히스토리: 16개 okay, but 4개 case 예외 발생
+//        18개 okay, but 2개 런타임 에러 발생 (조건추가로 2개 해결)
 
 import java.io.*;
 import java.math.*;
@@ -17,13 +18,18 @@ public class Solution {
         int count = 0;
         boolean exception = false;
         int len = s.length();
+        int lastIndex = 0;
         String result = "";
         int []arr = new int[len];
-
         for(int i=0; i<len; i++){
             arr[s.charAt(i) - 'a'] ++;
         }
-        count = arr[0];
+        for(int i=len-1; i>=0; i--){
+            if(arr[i] > 0){
+                lastIndex = i;
+                break;
+            }
+        }
         for(int i=0; i<len-1; i++){
             //index 값이 0인 것은 제외한다.
             if(arr[i] != 0 && arr[i+1] != 0){
@@ -41,14 +47,19 @@ public class Solution {
                 else if(arr[i+1]-arr[i] == 1 && exception == true){
                     return "NO";
                 }
-                //뒤의 값이 더 작은 경우
-                else if(arr[i+1]-arr[i] < 0){
-                    return "NO";
+                 //뒤의 값이 더 작은 경우
+                 //221
+                 else if(arr[i+1]-arr[i] < 0){
+                    //마지막 인자가 1인경우 딱 1번만 빼버리면 된다.
+                    if(i+1 == lastIndex && arr[i+1] == 1){
+                        return "YES";
+                    }else{
+                        return "NO";
+                    }
                 }
             }
         }
-
-    return "YES";
+        return "YES";
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -68,3 +79,4 @@ public class Solution {
         scanner.close();
     }
 }
+
