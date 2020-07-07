@@ -24,6 +24,13 @@ public class Solution {
         for(int i=0; i<len; i++){
             arr[s.charAt(i) - 'a'] ++;
         }
+        //이렇게도 가능
+        /*
+        for (char c : s.toCharArray()) {
+            arr[c - 'a'] ++;
+        }
+        */
+        //마지막 예외 조건에서 쓰기위해 마지막 인덱스 찾기
         for(int i=len-1; i>=0; i--){
             if(arr[i] > 0){
                 lastIndex = i;
