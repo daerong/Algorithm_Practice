@@ -1,4 +1,5 @@
 
+
 ## Greedy Method
 
 **탐욕 알고리즘이란?**  
@@ -68,9 +69,10 @@ Spanning Tree의 합을 최소로 하는 MST(Minimal Spanning Tree)를 만들기
 >	- 'union-find 알고리즘' 이용  
 
 **크루스칼의 시간 복잡도**  
-- O(nlog n)  
-	- union-find 알고리즘을 이용하면 Kruskal 알고리즘의 시간 복잡도는 Edge를 정렬하는 시간에 좌우된다.  
-	- 즉, Edge가 n개일 때, 퀵 정렬과 같은 효율적인 알고리즘으로 정렬했을 때 O(nlog n)의 시간 복잡도를 갖는다.  
+- O(Elog N)
+	- Edge 정렬 : O(Elog E)
+	- Union-FInd : O(Elog N)
+	-  O(Nlog N + Elog N) = O(Elog N)
 
 예제  
 [SW Expert Acdemy 1251번](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_1251_U.cpp)  
@@ -108,11 +110,39 @@ Kruskal Algorithm과 같은 MST(Minimal Spanning Tree)를 만들기 위한 방�
 
 **크루스칼 vs 프림 비교**  
 크루스칼과 프림 모두 가중치가 낮은 간선(Edge)을 선택한다. 즉, 순간의 최선을 선택하는 Greedy Method를 이용한다.  
-| 크루스칼 | 프림 |
+| Kruskal| Prim |
 |--|--|
 | 크루스칼의 경우에는 간선(Edge)의 가중치를 오름차순으로 정렬한 뒤, 순차적으로 선택하여 MST를 만든다. | 프림의 경우에는 양 끝단의 Node(정점)을 통해 가중치가 낮은 간선을 이어붙이며 MST를 만든다. |
-  
+- O(Elog N)  
+	- Edge 정렬 : O(Elog E)  
+	- Union-FInd : O(Elog N)  
+	-  O(Nlog N + Elog N) = O(Elog N)  
+
+**프림의 시간 복잡도**   
+- O(Elog N)  
+	- Extract-Min : O(Nlog N)  
+	- Search and Decrease-Key : O(Elog N)
+	- O(Nlog N + Elog N) = O(Elog N)
+- O(E + logN)
+	- 피보나치 힙 사용 시 
+
+>**Extract-Min**  
+>Extract-Min : 가장 작은 요소를 반환한 후, 삭제한다.  
+>Extract-Max : 가장 큰 요소를 반환한 후, 삭제한다.  
+
+>**Search and Decrease-Key**  
+>Search : 트리의 길이(Node 수)만큼 탐색(O(log N))해야한다.
+>Decrease-Key : 모든 Node에 대해 Edge 가중치 업데이트(O(E/Vlog V))가 실행되므로 O(E logV)의 시간복잡도를 갖는다.  
+
+>**Fibonacci heap(피보나치 힙)**  
+>우선순위 큐(priority queue) 연산을 위한 자료 구조로, 힙-정렬된 트리를 모아놓은 자료 구조이다.  
+>힙이 결합하는 과정이 피보나치 수열과 유사하여 피보나치 힙으로 불린다. 
+
+예제  
+[SW Expert Acdemy 3124번](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_3124_U.cpp)  
+
 참고문서  
 [https://ko.wikipedia.org/wiki/%ED%94%84%EB%A6%BC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A6%BC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)  
 [https://m.blog.naver.com/PostView.nhn?blogId=kimmy5000&logNo=220635475967&proxyReferer=https:%2F%2Fwww.google.com%2F](https://m.blog.naver.com/PostView.nhn?blogId=kimmy5000&logNo=220635475967&proxyReferer=https:%2F%2Fwww.google.com%2F)  
-
+[https://www.cs.auckland.ac.nz/software/AlgAnim/prim.html](https://www.cs.auckland.ac.nz/software/AlgAnim/prim.html)  
+[https://journee912.tistory.com/67](https://journee912.tistory.com/67)   
