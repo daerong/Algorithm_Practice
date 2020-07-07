@@ -101,8 +101,8 @@ Kruskal Algorithm과 같은 MST(Minimal Spanning Tree)를 만들기 위한 방�
 **[프림 알고리즘의 동작](https://ko.wikipedia.org/wiki/%ED%94%84%EB%A6%BC_%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)**  
 1. Graph의 한 Node를 선택한다.  
 2. Node에 연결된 가중치가 가장 작은 Edge를 선택한다.  
-3. 양 끝 Node에 연결된 가중치가 가장 작은 Edge를 선택한다.  
-	Node에 연결된 Edge가 두개인 경우, 끝 점이 아니다.  
+3. 연결된 Node들과 연결된 가중치가 가장 작은 Edge를 선택한다.  
+	새로운 Edge는 새로운 Node에 연결된다. 
 4. 2로 돌아가 반복한다.  
 	모든 정점이 연결될 때까지 반복한다.  
 
