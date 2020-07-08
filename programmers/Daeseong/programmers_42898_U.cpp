@@ -1,17 +1,23 @@
 #include <string>
 #include <vector>
 
-#define MAP_MAX 102
+#define MAP_MAX 101
 
 using namespace std;
+
 bool wet[MAP_MAX][MAP_MAX];
 int map[MAP_MAX][MAP_MAX];
-int N;
-int M;
 
-void setting(int m, int n, vector<vector<int>> puddles) {
-    N = n;
-    M = m;
+int solution(int m, int n, vector<vector<int>> puddles) {
+    long long answer = 0;
+
+    for (int y = 0; y <= n; y++) {
+        for (int x = 0; x <= m; x++) {
+            map[y][x] = 0;
+            wet[y][x] = false;
+        }
+    }
+
     vector<int> temp;
     while (!puddles.empty()) {
         temp = puddles.back();
@@ -20,25 +26,21 @@ void setting(int m, int n, vector<vector<int>> puddles) {
     }
 
     map[1][1] = 1;
-    for (int x = 2; x <= M; x++) {
+    for (int x = 2; x <= m; x++) {
         if (wet[1][x]) continue;
         map[1][x] = map[1][x - 1];
     }
-    for (int y = 2; y <= N; y++) {
+    for (int y = 2; y <= n; y++) {
         if (wet[y][1]) continue;
         map[y][1] = map[y - 1][1];
     }
-}
-void connection() {
-    for (int y = 2; y <= N; y++) {
-        for (int x = 2; x <= M; x++) {
+
+    for (int y = 2; y <= n; y++) {
+        for (int x = 2; x <= m; x++) {
             if (wet[y][x]) continue;
-            map[y][x] = map[y - 1][x] + map[y][x - 1];
+            map[y][x] = (map[y - 1][x] + map[y][x - 1]) % 1000000007;
         }
     }
-}
-int solution(int m, int n, vector<vector<int>> puddles) {
-    setting(m, n, puddles);
-    connection();
-    return map[N][M] % 1000000007;
+
+    return map[n][m];
 }
