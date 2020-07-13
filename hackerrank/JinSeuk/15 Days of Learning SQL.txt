@@ -1,0 +1,25 @@
+SELECT A.submission_date
+      ,A.hkr_cnt
+      ,B.hacker_id
+      ,C.name
+  FROM (
+        SELECT submission_date
+              ,COUNT(DISTINCT hacker_id) AS hkr_cnt
+          FROM (
+                SELECT IN_A.*
+                      ,DENSE_RANK() OVER(ORDER BY submission_date) AS date_rank
+                      ,DENSE_RANK() OVER(PARTITION BY hacker_id ORDER BY submission_date) AS hacker_rank 
+                  FROM submissions AS IN_A ) AS A 
+                 WHERE date_rank = hacker_rank 
+                 GROUP BY submission_date
+       ) AS A 
+  JOIN (
+        SELECT submission_date,hacker_id,RANK() OVER(PARTITION BY submission_date ORDER BY sub_cnt desc, hacker_id) AS max_rank 
+          FROM (
+                SELECT submission_date, hacker_id, COUNT(*) AS sub_cnt 
+                  FROM submissions 
+                 GROUP BY submission_date, hacker_id
+               ) AS IN_B 
+       ) AS B on A.submission_date = B.submission_date 
+             AND B.max_rank = 1 
+  JOIN hackers AS C on C.hacker_id = B.hacker_id 
