@@ -2,52 +2,42 @@
 #include <string>
 #include <queue>
 
+#define N_MAX 6
+#define M_MAX 10
+
 using namespace std;
 
 string given_num;
+string max_str[M_MAX + 1];
 int given_cnt;
 int N;
 
 void input() {
 	cin >> given_num >> given_cnt;
 	N = given_num.length();
+
+	for (int i = 0; i <= given_cnt; i++) {
+		max_str[i] = "0";
+	}
 }
-string solution() {
-	priority_queue<char> pq;
-	string result = given_num;
+string change(string str, int i, int j) {
+	char temp = str[i];
+	str[i] = str[j];
+	str[j] = temp;
+
+	return str;
+}
+void solution(string answer, int cnt) {
+	if (cnt > given_cnt) return;
+	if (answer < max_str[cnt]) return;
+
+
+	max_str[cnt] = answer;
+
 	for (int i = 0; i < N; i++) {
-		pq.push(given_num[i]);
-	}
-
-	int diffrent = 0;
-	int index = 0;
-	while (!pq.empty()) {
-		char temp = pq.top();
-		pq.pop();
-
-		result[index] = temp;
-		if (given_num[index] != temp) diffrent++;
-		index++;
-	}
-
-	if (diffrent / 2 <= given_cnt) {
-		return result;
-	}
-	else {
-		for (int i = 0; i < N; i++) {
-			if (given_cnt == 0) break;
-			if (result[i] == given_num[i]) continue;
-			for (int j = N - 1; j > i; j--) {
-				if (result[i] == given_num[j]) {
-					given_num[j] = given_num[i];
-					given_num[i] = result[i];
-					given_cnt--;
-					break;
-				}
-			}
+		for (int j = i + 1; j < N; j++) {
+			solution(change(answer, i, j), cnt + 1);
 		}
-
-		return given_num;
 	}
 }
 
@@ -55,9 +45,13 @@ void solve() {
 	int TC;
 	cin >> TC;
 	for (int tc = 1; tc <= TC; tc++) {
-		
 		input();
-		cout << "#" << tc << " " << solution() << endl;;
+		for (int i = 0; i < N; i++) {
+			for (int j = i + 1; j < N; j++) {
+				solution(change(given_num, i, j), 1);
+			}
+		}
+		cout << "#" << tc << " " << max_str[given_cnt] << endl;
 	}
 }
 
