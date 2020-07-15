@@ -2,6 +2,10 @@
 // translation : am 12:03
 // end : am 12:07
 
+//Solution
+//- It is solved easily using one formula. (m + (s - 1)) % n
+//- When the result of the formula is 0, you must print n.Because no prisoner can't have if. So the last one can get it.
+
 #include <iostream>
 
 using namespace std;
