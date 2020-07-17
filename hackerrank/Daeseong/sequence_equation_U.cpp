@@ -5,27 +5,30 @@ using namespace std;
 #define N_MAX 51
 
 int N;
-int arr[N_MAX];
+int locate[N_MAX];
+int num[N_MAX];
 
 void input() {
 	cin >> N;
 	for (int n = 1; n <= N; n++) {
-		cin >> arr[n];
+		cin >> num[n];
+		locate[num[n]] = n;
 	}
 }
 
-int connect(int n, int cnt) {
-	if (cnt == 4) {
-		return n;
+int get_result(int target, int cnt) {
+	if (cnt == 1) {
+		return locate[target];
 	}
 
-	return connect(arr[n], cnt + 1);
+
+	return get_result(locate[target], cnt + 1);
 }
 
 void solve() {
 	input();
 	for (int n = 1; n <= N; n++) {
-		cout << connect(arr[n], 1) << endl;
+		cout << get_result(n, 0) << endl;
 	}
 }
 
