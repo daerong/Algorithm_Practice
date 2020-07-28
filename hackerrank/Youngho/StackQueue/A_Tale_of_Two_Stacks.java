@@ -1,4 +1,7 @@
 //link : https://www.hackerrank.com/challenges/ctci-queue-using-two-stacks/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=stacks-queues
+//비고 : 
+// 1. for문 안에서 pop을 썼기때문에 원인 디버깅에 시간이 많이 걸림
+// 2. 스택끼리 오가는 작업이 시간 제한에 걸림 O(2N)
 
 import java.io.*;
 import java.util.*;
