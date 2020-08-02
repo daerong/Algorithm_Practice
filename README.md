@@ -37,6 +37,13 @@
 	- [HackerRank : Viral Advertising](https://github.com/daerong/Algorithm_Practice/blob/master/hackerrank/Daeseong/viral_advertising_U.cpp)  
 	- [SW Expert Acdemy 1244번 : 최대 상금](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_1244_U.cpp)  
 
+### Binary Search  
+- Description
+- Keywords
+- Examples
+	- [Programmers 64062번 : 징검다리 건너기](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_64062_U.cpp) 
+
+
 ### BFS(Breath-First Search)  
 - [Description](https://github.com/daerong/Basic_Learning/blob/master/Algorithm/Breath_First_Search.md)  
 - Keywords  
@@ -49,7 +56,7 @@
 ### DFS(Depth-First Search)  
 - Description
 - Keywords
--Examples
+- Examples
 	- [SW Expert Acdemy 1868 : 파핑파핑 지뢰찾기](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_1868_U.cpp)  
 	- [BAEKJOON 1194 : 달이 차오른다, 가자.](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/1194_U.cpp)  
 
