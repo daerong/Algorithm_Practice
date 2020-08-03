@@ -1,6 +1,6 @@
-https://www.hackerrank.com/challenges/minimum-swaps-2/problem2314?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrayslink :
-time : 10 min
-비고 : 15개중 4개의 test case가 런타임 에러 발생.. Worst case가 On2보다 빨라야 함을 의미 -> 연산 필요
+//https://www.hackerrank.com/challenges/minimum-swaps-2/problem2314?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrayslink :
+//time : 10 min
+//비고 : 15개중 4개의 test case가 런타임 에러 발생.. Worst case가 On2보다 빨라야 함을 의미 -> 연산 필요
 
 import java.io.*;
 import java.math.*;
