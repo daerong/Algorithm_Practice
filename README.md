@@ -53,6 +53,7 @@
 - Examples  
 	- [BAEKJOON 6593 : 상범 빌딩](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/6593_U.cpp)  
 	- [BAEKJOON 1194 : 달이 차오른다, 가자.](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/1194_U.java)  
+	- [SW Expert Acdemy 1868 : 파핑파핑 지뢰찾기](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_1868_U.java)  
 ### DFS(Depth-First Search)  
 - Description
 - Keywords
