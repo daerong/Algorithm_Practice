@@ -14,7 +14,6 @@
 
 using namespace std;
 
-#define G_MAX 100
 typedef struct SONG {
     int play;
     int index;
