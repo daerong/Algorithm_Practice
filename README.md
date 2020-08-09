@@ -6,8 +6,11 @@
 	- [Greedy Method](#greedy-method)  
 	- [Divide and Conquer](#divide-and-conquer)  
 - technique  
+	- [Hash Map](#hash-map)  
 	- [DP(Dynamic Programming)](#dpdynamic-programming)  
+	- [Binary Search](#binary-search)  
 	- [BFS(Breath-First Search)](#bfsbreath-first-search)  
+	- [DFS(Depth-First Search)](#dfsdepth-first-search)  
 	- [Kruskal's Algorithm](#kruskals-algorithm)  
 	- [Prim's Algorithm](#prims-algorithm)  
 
@@ -25,6 +28,13 @@
 - [Description](https://github.com/daerong/Basic_Learning/blob/master/Algorithm/Divide_and_Conquer.md)  
 - Keywords  
 	- Top-Down(하향식 접근법)
+
+### Hash Map  
+- Description
+- Keywords
+- Examples
+	- [Programmers 64063번 : 호텔 방 배정](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_64063_U.cpp)  
+	- [Programmers 64063번 : 호텔 방 배정](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_64063_U.java)   
 
 ### DP(Dynamic Programming)  
 - [Description](https://github.com/daerong/Basic_Learning/blob/master/Algorithm/Dynamic_Programming.md)
