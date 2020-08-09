@@ -1,5 +1,4 @@
 //Solution
-//- 결과는 다음과 같이 구할 수 있다.
 //- 1. Genre에 대한 vector(변수명 vec)를 만들어 장르별 합을 구한다.
 //- 2. Genre 안에 song이라는 priority_queue를 만들어 song을 내림차순으로 저장한다.
 //- 3. vec을 내림차순 sort하여 큰 순서대로 정렬한다.
