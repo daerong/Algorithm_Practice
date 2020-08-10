@@ -1,75 +1,70 @@
+//Solution
+//- Map에서 키를 정수로 사용하여 속도를 높임.
+//- Union-Find로 Parent 배열을 이용.
+//- 입출력 성능 개선 endl -> "\n", ios_base::sync_with_stdio(), cin.tie()등 사용.
+//- Find, getParent 함수에서 다시 찾는 것을 방지하기 위해 값 업데이트 필요.
+
 #include <iostream>
-#include <cstring>
-#include <unordered_map>
-#include <vector>
+#include <map>
+#include <string>
 
 using namespace std;
+#define endl "\n"
 
-unordered_map<string, int> m;				// 이름, 인덱스
-vector<pair<string, int>> vec;				// 이름, 카운트
+map<string, int> m;
+int parent[200002];
+int friends[200002];
 
-int connection_update(string parent, int addition) {
-	int parent_index = m[parent];
-	if (vec[parent_index].first == parent) {
-		vec[parent_index].second += addition;
-		return vec[parent_index].second;
-	}
-	else {
-		string next_target = vec[parent_index].first;
-		return vec[parent_index].second = connection_update(next_target, addition);
-	}
+int getParent(int target) {
+	if (target == parent[target]) return target;
+	return parent[target] = getParent(parent[target]);
 }
 
-void add_friend(int connection_cnt) {
-	vec.push_back(make_pair("None", 0));
-	string one;
-	string two;
-	for (int i = 0; i < connection_cnt; i++) {
-		cin >> one >> two;
+int Union(int one, int two) {
+	one = getParent(one);
+	two = getParent(two);
 
-		if (m[two] != 0) {
-			if (m[one] != 0) {
-				int add_factor = connection_update(one, 0);
-				m[one] = m[two];
+	if (one < two) {
+		parent[two] = one;
+		friends[one] += friends[two];
+		return friends[one];
+	}
+	else if (one > two) {
+		parent[one] = two;
+		friends[two] += friends[one];
+		return friends[two];
+	}
 
-				vec[m[one]].second = connection_update(two, add_factor);
+	return friends[two];
+}
 
-				cout << vec[m[one]].second << endl;
-			}
-			else {
-				vec.push_back(make_pair(one, 1));
-				m[one] = m[two];
-
-				vec[m[one]].second = connection_update(two, 1);
-
-				cout << vec[m[one]].second << endl;
-			}
-		}
-		else {
-			if (m[one] == 0) {
-				vec.push_back(make_pair(one, 1));
-				m[one] = vec.size();
-			}
-			vec.push_back(make_pair(two, 1));
-			m[two] = m[one];
-
-			vec[m[two]].second = connection_update(one, 1);
-
-			cout << vec[m[two]].second << endl;
-		}
+void initalize(int N) {
+	for (int i = 0; i <= (2 * N); i++) {
+		parent[i] = i;
+		friends[i] = 1;
 	}
 
 	m.clear();
-	vec.clear();
 }
 
 void solve() {
 	int TC;
 	cin >> TC;
-	for (int tc = 1; tc <= TC; tc++) {
+	for (int tc = 0; tc < TC; tc++) {
 		int N;
 		cin >> N;
-		add_friend(N);
+
+		initalize(N);
+
+		string one, two;
+		int index = 0;
+		for (int i = 0; i < N; i++) {
+			cin >> one >> two;
+			if (m.count(one) == 0) m[one] = index++;
+			if (m.count(two) == 0) m[two] = index++;
+
+			cout << Union(m[one], m[two]) << endl;
+		}
 	}
 }
 
