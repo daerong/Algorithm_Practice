@@ -4,7 +4,6 @@
 //- 2. m의 배수만큼 제외한다. cnt += x * m; (x는 묶음의 갯수)
 //- 3. 묶음의 갯수 만큼 초콜렛을 추가한다. cnt += x;
 //- 4. 갯수가 m보다 작을 때까지 2~3을 반복한다.
-
 import java.io.*;
 import java.math.*;
 import java.security.*;
