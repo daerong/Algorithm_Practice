@@ -1,3 +1,9 @@
+//Solution
+//- 우주정거장과 거리의 최대값을 구하는 문제
+//- 다음에 유의하면 어려움 없이 해결가능하다.
+//- 1. c는 정렬되어 있지 않다.
+//- 2. 0과 n-1번째 도시와의 거리는 2로 나눌 필요가 없다.
+
 import java.io.*;
 import java.math.*;
 import java.security.*;
