@@ -10,41 +10,8 @@ public class Solution {
 
     // Complete the bigSorting function below.
     static String[] bigSorting(String[] unsorted) {
-        PriorityQueue<BigNum> pq = new PriorityQueue<>();
-        for(int i = 0; i < unsorted.length; i++){
-            pq.offer(new BigNum(unsorted[i].length(), unsorted[i]));
-        }
-        int index = 0;
-        while (!pq.isEmpty()){
-            BigNum temp = pq.poll();
-            unsorted[index] = temp.str;
-            index++;
-        }
-
+        Arrays.sort(unsorted);
         return unsorted;
-    }
-
-    static class BigNum implements Comparable<BigNum>{
-        int len;
-        String str;
-
-        public BigNum(int len, String str) {
-            this.len = len;
-            this.str = str;
-        }
-
-        @Override
-        public int compareTo(BigNum o) {
-            if (this.len > o.len) return 1;
-            else if(this.len < o.len) return -1;
-            else{
-                for(int i = 0; i < o.len; i++){
-                    if(this.str.charAt(i) > o.str.charAt(i)) return 1;
-                    else if(this.str.charAt(i) < o.str.charAt(i)) return -1;
-                }
-                return 0;
-            }
-        }
     }
 
     private static final Scanner scanner = new Scanner(System.in);
