@@ -97,22 +97,36 @@
 #### 2018 KAKAO BLIND RECRUITMENT  
 - [[1차] 추석 트래픽](https://programmers.co.kr/learn/courses/30/lessons/17676)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17676_U.cpp)  
+	- priority_queue<struct>, list<struct>, list<int>  
 - [[1차] 뉴스 클러스터링](https://programmers.co.kr/learn/courses/30/lessons/17677)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17677_U.cpp)  
+	- unordered_map<string, int>  
+	- 특이사항 : 교집합, 합집합 구현  
 - [[1차] 셔틀버스](https://programmers.co.kr/learn/courses/30/lessons/17678)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17678_U.cpp)  
+	- queue<string>, deque<string>  
 - [[1차] 프렌즈4블록](https://programmers.co.kr/learn/courses/30/lessons/17679)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17679_U.cpp)  
+	- vector<char>  
+	- 특이사항 : 중간에서 삽입, 삭제가 일어남  
 - [[1차] 캐시](https://programmers.co.kr/learn/courses/30/lessons/17680)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17680_U.cpp)  
+	- unordered_map<string, int>, vector<int>  
+	- 특이사항 : 벡터를 사용해 cache 구현  
 - [[1차] 비밀지도](https://programmers.co.kr/learn/courses/30/lessons/17681)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17681_U.cpp)  
+	- <<, >>, &, |  
+	- 특이사항 : 비트연산  
 - [[1차] 다트게임](https://programmers.co.kr/learn/courses/30/lessons/17682)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17682_U.cpp)  
+	- 특이사항 : 문자열 처리  
 - [[3차] 방금그곡](https://programmers.co.kr/learn/courses/30/lessons/17683)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17683_U.cpp)  
+	- priority_queue<struct>, strtok()  
+	- 특이사항 : 코드 치환  
 - [[3차] 압축](https://programmers.co.kr/learn/courses/30/lessons/17684)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17684_U.cpp)  
+	- unordered_map<string, int>  
 - [[3차] 자동완성]  
 - [[3차] 파일명 정렬]  
 - [[3차] n진수 게임]  
