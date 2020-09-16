@@ -127,10 +127,12 @@
 - [[3차] 압축](https://programmers.co.kr/learn/courses/30/lessons/17684)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17684_U.cpp)  
 	- unordered_map<string, int>  
-- [[3차] 자동완성]  (https://programmers.co.kr/learn/courses/30/lessons/17685)  
+- [[3차] 자동완성](https://programmers.co.kr/learn/courses/30/lessons/17685)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17685_U.cpp)  
 	- 문자열 비교  
-- [[3차] 파일명 정렬]  
+- [[3차] 파일명 정렬](https://programmers.co.kr/learn/courses/30/lessons/17686)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17685_U.cpp)  
+	- priority_queue<struct>, string_substr()
 - [[3차] n진수 게임]  
 
 
