@@ -131,8 +131,10 @@
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17685_U.cpp)  
 	- 문자열 비교  
 - [[3차] 파일명 정렬](https://programmers.co.kr/learn/courses/30/lessons/17686)   
-	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17685_U.cpp)  
-	- priority_queue<struct>, string_substr()
-- [[3차] n진수 게임]  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17686_U.cpp)  
+	- priority_queue<struct>, string_substr()  
+- [[3차] n진수 게임](https://programmers.co.kr/learn/courses/30/lessons/17687)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17687_U.cpp)  
+	- N진법 풀이  
 
 
