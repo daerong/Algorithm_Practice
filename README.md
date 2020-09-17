@@ -137,7 +137,10 @@
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17687_U.cpp)  
 	- N진법 풀이  
 #### 2018 KAKAO BLIND RECRUITMENT 
-- [오픈채팅방]  
+- [오픈채팅방](https://programmers.co.kr/learn/courses/30/lessons/42888)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42888_U.cpp)  
+	- unordered_map<string, int>, queue<struct>, stringstream  
+	- Failed 1 : 문자열 입력 실패 -> sstream, stringstream 사용하여 해결. 코드 설명 참조
 - [실패율]  
 - [후보키]  
 - [무지의 먹방 라이브]  
