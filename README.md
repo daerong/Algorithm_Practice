@@ -136,5 +136,11 @@
 - [[3차] n진수 게임](https://programmers.co.kr/learn/courses/30/lessons/17687)   
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17687_U.cpp)  
 	- N진법 풀이  
-
-
+#### 2018 KAKAO BLIND RECRUITMENT 
+- [오픈채팅방]  
+- [실패율]  
+- [후보키]  
+- [무지의 먹방 라이브]  
+- [길 찾기 게임]  
+- [매칭 점수]  
+- [블록게임]  
