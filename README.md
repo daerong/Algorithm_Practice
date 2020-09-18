@@ -140,8 +140,11 @@
 - [오픈채팅방](https://programmers.co.kr/learn/courses/30/lessons/42888)   
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42888_U.cpp)  
 	- unordered_map<string, int>, queue<struct>, stringstream  
-	- Failed 1 : 문자열 입력 실패 -> sstream, stringstream 사용하여 해결. 코드 설명 참조
-- [실패율]  
+	- Failed 1 : 문자열 입력 실패 -> sstream, stringstream 사용하여 해결. 코드 설명 참조  
+- [실패율](https://programmers.co.kr/learn/courses/30/lessons/42889)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42889_U.cpp)  
+	- priority_queue<struct>  
+	- Failed 1 : 분모가 0인 경우, 예외처리가 필요하다.  
 - [후보키]  
 - [무지의 먹방 라이브]  
 - [길 찾기 게임]  
