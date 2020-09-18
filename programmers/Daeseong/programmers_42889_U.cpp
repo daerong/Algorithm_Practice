@@ -12,7 +12,7 @@
 - 1. sum이 0이 되는 경우 연산을 실행할 수 없어 문제를 야기한다.
     - sum이 0인 경우는 arr[i] 값도 0이기 때문에 arr[i] == 0인 경우 0을 대입하는 방식으로 해결할 수 있다.*/ 
 
-#include <iostream>
+//#include <iostream>
 // Code start
 
 #include <string>
@@ -60,27 +60,27 @@ vector<int> solution(int N, vector<int> stages) {
 }
 
 // Code end
-int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-
-    int N = 4;
-    vector<int> stages;
-    stages.push_back(5);
-    stages.push_back(5);
-    stages.push_back(5);
-    stages.push_back(5);
-    stages.push_back(5);
-    stages.push_back(5);
-    stages.push_back(5);
-    stages.push_back(5);
-
-
-    vector<int> temp = solution(N, stages);
-    for (vector<int>::iterator iter = temp.begin(); iter < temp.end(); iter++) {
-        cout << *iter << endl;
-    }
-
-    return 0;
-}
+//int main() {
+//    ios_base::sync_with_stdio(false);
+//    cin.tie(NULL);
+//    cout.tie(NULL);
+//
+//    int N = 4;
+//    vector<int> stages;
+//    stages.push_back(5);
+//    stages.push_back(5);
+//    stages.push_back(5);
+//    stages.push_back(5);
+//    stages.push_back(5);
+//    stages.push_back(5);
+//    stages.push_back(5);
+//    stages.push_back(5);
+//
+//
+//    vector<int> temp = solution(N, stages);
+//    for (vector<int>::iterator iter = temp.begin(); iter < temp.end(); iter++) {
+//        cout << *iter << endl;
+//    }
+//
+//    return 0;
+//}
