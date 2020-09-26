@@ -145,7 +145,11 @@
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42889_U.cpp)  
 	- priority_queue<struct>  
 	- Failed 1 : 분모가 0인 경우, 예외처리가 필요하다.  
-- [후보키]  
+- [후보키](https://programmers.co.kr/learn/courses/30/lessons/42890)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42890_U.cpp)  
+	- unordered_map<string, int>, vector<int>, vector_erase()  
+	- 특이사항 : 비트마스크 사용, 후보키 원리  
+	- Failed 1 : 비트마스크를 사용한 풀이를 떠올리기 힘들었다.  
 - [무지의 먹방 라이브]  
 - [길 찾기 게임]  
 - [매칭 점수]  
