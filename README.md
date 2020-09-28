@@ -150,7 +150,10 @@
 	- unordered_map<string, int>, vector<int>, vector_erase()  
 	- 특이사항 : 비트마스크 사용, 후보키 원리  
 	- Failed 1 : 비트마스크를 사용한 풀이를 떠올리기 힘들었다.  
-- [무지의 먹방 라이브]  
+- [무지의 먹방 라이브](https://programmers.co.kr/learn/courses/30/lessons/42891)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42891_U.cpp)  
+	- priority_queue<struct>  
+	- 특이사항 : bool array를 사용해 삭제 index를 저장해야 해결할 수 있음.  
 - [길 찾기 게임]  
 - [매칭 점수]  
 - [블록게임]  
