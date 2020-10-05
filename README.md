@@ -154,6 +154,9 @@
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42891_U.cpp)  
 	- priority_queue<struct>  
 	- 특이사항 : bool array를 사용해 삭제 index를 저장해야 해결할 수 있음.  
-- [길 찾기 게임]  
+- [길 찾기 게임](https://programmers.co.kr/learn/courses/30/lessons/42892)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42892_U.cpp)  
+	- vector<struct>, set<int>, unordered_map<int, int>  
+	- 특이사항 : 트리 생성, preorder, postorder를 구현  
 - [매칭 점수]  
 - [블록게임]  
