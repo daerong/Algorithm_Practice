@@ -1,3 +1,20 @@
+//Solution
+//- 일일히 태그 처리를 해줘야하는 역대 최악의 문제.
+//- 풀이 중 어려웠던 부분 목록
+//- 1. <head>, </head>, <body>, </body>를 찾아서 잘라내야 풀이가 됨.
+//- 2. "<meta property=\"og:url\"" 이걸 먼저 찾아 잘라내고 "content=\"https://" 이걸 찾아야 사용가능
+//- 3. 검색어 검색시에 앞뒤로 대, 소문자가 이어져선 안됨.
+//- 풀이과정은 다음과 같다.
+//- 1. 각 pages마다 다음을 수행한다.
+//- 1-1. content에 해당하는 주소를 받아 Hashmap에 저장한다. string -> index                      (INDEX)
+//- 1-2. body 내에 link에 해당하는 string을 모두 vector에 저장한다.                              (LINK_CNT)
+//- 1-3. body 내에 검색어가 있는 지 확인한다. 대소문자 상관없으므로 toupper, tolower을 사용함.   (SEARCH_CNT)
+//- 2. 각(INDEX)에 대한 vector에 저장된 link를 확인한다.
+//- 2-1. Hashmap에 해당 link가 있는 지 확인한다.
+//- 2-2. link가 있는 경우, 해당 index에 (ANSWER_ARR)에 (SEARCH_CNT) / (LINK_CNT)를 더한다.         (ANSWER_ARR)
+//- 3. 각(INDEX)에 해당하는 (ANSWER_ARR)에 (SEARCH_CNT)를 더한다.
+//- 4. (ANSWER_ARR)의 최대값에 해당하는 (INDEX)를 리턴한다.
+
 #include <iostream>
 // Code start
 
@@ -7,10 +24,14 @@
 
 using namespace std;
 
-#define PROPERTY_TAG "property=\"og:url\""
+#define ARR_MAX 20
+#define HEAD_TAG_S "<head>"
+#define HEAD_TAG_E "</head>"
+#define PROPERTY_TAG "<meta property=\"og:url\""
 #define CONTENT_TAG_S "content=\"https://"
 #define CONTENT_TAG_E "\"/>"
-#define BODY_TAG "<body>"
+#define BODY_TAG_S "<body>"
+#define BODY_TAG_E "</body>"
 #define HREF_TAG_S "<a href=\"https://"
 #define HREF_TAG_F "\">"
 #define HREF_TAG_E "</a>"
@@ -30,111 +51,141 @@ int solution(string word, vector<string> pages) {
 
     string str;
 
-    vector<string> links[20];
-    int cnt[20];
-    for (int i = 0; i < 20; i++) cnt[i] = 0;
+    vector<string> links[ARR_MAX];
+    int cnt[ARR_MAX];
+    for (int i = 0; i < ARR_MAX; i++) cnt[i] = 0;
 
     for (int i = 0; i < pages.size(); i++) {
         str = pages[i];
 
-        if (str.find(PROPERTY_TAG) != string::npos) {
-            string property_tag = PROPERTY_TAG;
-            str = str.substr(str.find(PROPERTY_TAG) + property_tag.length());
+        if (str.find(HEAD_TAG_S) != string::npos) {
+            string head_tag_s = HEAD_TAG_S;
+            str = str.substr(str.find(HEAD_TAG_S) + head_tag_s.length());
+
+            if (str.find(PROPERTY_TAG) != string::npos) {
+                string property_tag = PROPERTY_TAG;
+                str = str.substr(str.find(PROPERTY_TAG) + property_tag.length());
+            }
+
+            if (str.find(CONTENT_TAG_S) != string::npos) {
+                string content_tag_s = CONTENT_TAG_S;
+                string content_tag_e = CONTENT_TAG_E;
+                int start = str.find(CONTENT_TAG_S) + content_tag_s.length();
+                int end = str.find(CONTENT_TAG_E);
+                string target = str.substr(start, end - start);
+
+                m.insert({ target , m_index++ });
+
+                str = str.substr(end + content_tag_e.length());
+            }
+
+            if (str.find(HEAD_TAG_E) != string::npos) {
+                string head_tag_e = HEAD_TAG_E;
+                str = str.substr(str.find(HEAD_TAG_E) + head_tag_e.length());
+            }
         }
 
-        if (str.find(CONTENT_TAG_S) != string::npos) {
-            string content_tag_s = CONTENT_TAG_S;
-            string content_tag_e = CONTENT_TAG_E;
-            int start = str.find(CONTENT_TAG_S) + content_tag_s.length();
-            int end = str.find(CONTENT_TAG_E);
-            string target = str.substr(start, end - start);
-
-            m.insert({ target , m_index++ });
-
-            str = str.substr(end + content_tag_e.length());
+        if (str.find(BODY_TAG_S) != string::npos) {
+            string body_tag_s = BODY_TAG_S;
+            str = str.substr(str.find(BODY_TAG_S) + body_tag_s.length(), str.find(BODY_TAG_E) - (str.find(BODY_TAG_S) + body_tag_s.length()));
         }
 
-        if (str.find(BODY_TAG) != string::npos) {
-            string body_tag = BODY_TAG;
-            str = str.substr(str.find(BODY_TAG) + body_tag.length());
+        string inner_str = str;
+
+        while (inner_str.find(HREF_TAG_S) != string::npos) {
+            string href_tag_s = HREF_TAG_S;
+            string href_tag_f = HREF_TAG_F;
+            int start = inner_str.find(HREF_TAG_S) + href_tag_s.length();
+            int end = inner_str.find(HREF_TAG_F);
+            string target = inner_str.substr(start, end - start);
+
+            links[i].push_back(target);
+
+            inner_str = inner_str.substr(end + href_tag_f.length());
+
+            string href_tag_e = HREF_TAG_E;
+            inner_str = inner_str.substr(inner_str.find(HREF_TAG_E) + href_tag_e.length());
         }
 
-        int search_cnt = 0;
-        bool is_connect = false;
         while (str.length() != 0) {
             if (str[0] == '<') {
-                bool is_href = true;
-                string href_s = HREF_TAG_S;
-
-                if (href_s.length() > str.length()) break;
-                for (int locate = 0; locate < href_s.length(); locate++) {
-                    if (href_s[locate] != str[locate]) {
-                        is_href = false;
-                        break;
-                    }
-                }
-
-                if (is_href) {
-                    string href_tag_s = HREF_TAG_S;
-                    string href_tag_f = HREF_TAG_F;
-                    int start = str.find(HREF_TAG_S) + href_tag_s.length();
-                    int end = str.find(HREF_TAG_F);
-                    string target = str.substr(start, end - start);
-
-                    links[i].push_back(target);
-
-                    str = str.substr(end + href_tag_f.length());
-
-                    string href_tag_e = HREF_TAG_E;
-                    str = str.substr(str.find(HREF_TAG_E) + href_tag_e.length());
-                }
-                else {
-                    str = str.substr(1);
-                }
+                int index = 1;
+                while (str[index] != '>') index++;
+                str = str.substr(index + 1);
             }
-            else {
-                if (is_connect) {
-                    if (str[0] >= 'A' && str[0] <= 'Z') {}
-                    else if (str[0] >= 'a' && str[0] <= 'z') {}
+            else if (str[0] == lower_case[0] || str[0] == upper_case[0]) {
+                if (str.length() >= word.length()) {
+                    bool is_same = true;
+                    int locate;
+                    for (locate = 1; locate < word.length(); locate++) {
+                        if (str[locate] != lower_case[locate] && str[locate] != upper_case[locate]) {
+                            is_same = false;
+                            break;
+                        }
+                    }
+
+                    if (is_same) {
+                        if (str[locate] >= 'A' && str[locate] <= 'Z') is_same = false;
+                        else if (str[locate] >= 'a' && str[locate] <= 'z') is_same = false;
+                        else cnt[i] += 1;
+                    }
+
+                    if (!is_same) {
+                        for (locate; locate < str.length(); locate++) {
+                            if (str[locate] >= 'A' && str[locate] <= 'Z') {}
+                            else if (str[locate] >= 'a' && str[locate] <= 'z') {}
+                            else break;
+                        }
+
+                        str = str.substr(locate);
+                    }
                     else {
-                        is_connect = false;
-                        search_cnt = 0;
+                        str = str.substr(locate + 1);
                     }
+
                 }
-                else {
-                    if (str[0] == lower_case[search_cnt] || str[0] == upper_case[search_cnt]) search_cnt++;
-                    else {
-                        if (str[0] >= 'A' && str[0] <= 'Z') is_connect = true;
-                        else if (str[0] >= 'a' && str[0] <= 'z') is_connect = true;
-                        else {}
-
-                        search_cnt = 0;
-                    }
-
-                    if (search_cnt == word.length()) {
-                        if (str[1] >= 'A' && str[1] <= 'Z') {
-                            is_connect = true;
-                            search_cnt = 0;
-                        }
-                        else if (str[1] >= 'a' && str[1] <= 'z') {
-                            is_connect = true;
-                            search_cnt = 0;
-                        }
-                        else {
-                            cnt[i] += 1;
-                            search_cnt = 0;
-                        }
-                    }
-                }
-
-                str = str.substr(1);
+                else break;
             }
+            else if (str[0] >= 'a' && str[0] <= 'z') {
+                if (str.length() >= word.length()) {
+                    bool is_same = true;
+                    int locate;
+                    for (locate = 1; locate < word.length(); locate++) {
+                        if (str[locate] != lower_case[locate] || str[locate] != upper_case[locate]) {
+                            is_same = false;
+                            break;
+                        }
+                    }
+
+                    if (is_same) {
+                        if (str[locate] >= 'A' && str[locate] <= 'Z') is_same = false;
+                        else if (str[locate] >= 'a' && str[locate] <= 'z') is_same = false;
+                        else cnt[i] += 1;
+                    }
+
+                    if (!is_same) {
+                        for (locate; locate < str.length(); locate++) {
+                            if (str[locate] >= 'A' && str[locate] <= 'Z') {}
+                            else if (str[locate] >= 'a' && str[locate] <= 'z') {}
+                            else break;
+                        }
+
+                        str = str.substr(locate);
+                    }
+                    else {
+                        str = str.substr(locate + 1);
+                    }
+
+                }
+                else break;
+            }
+            else str = str.substr(1);
         }
 
         //cout << cnt[i] << ", " << links[i].size() << endl;
     }
 
-    float scores[20];
+    float scores[ARR_MAX];
     for (int i = 0; i < m_index; i++) scores[i] = cnt[i];
 
     for (int i = 0; i < m_index; i++) {
@@ -164,16 +215,16 @@ int main() {
     cin.tie(NULL);
     cout.tie(NULL);
 
-    //string word = "blind";
-    //vector<string> pages;
-    //pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://a.com\"/>\n</head>  \n<body>\nblind lorem blind ipsum dolor blind test sit amet, consectetur adipiscing elit. \n<a href=\"https://b.com\"> link to b </a>\n</body>\n</html>");
-    //pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://b.com\"/>\n</head>  \n<body>\nsuspendisse potenti. vivamus venenatis tellus non turpis bibendum, \n<a href=\"https://a.com\"> link to a </a>\nblind sed congue urna varius. suspendisse feugiat nisl ligula, quis malesuada felis hendrerit ut.\n<a href=\"https://c.com\"> link to c </a>\n</body>\n</html>");;
-    //pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://c.com\"/>\n</head>  \n<body>\nut condimentum urna at felis sodales rutrum. sed dapibus cursus diam, non interdum nulla tempor nec. phasellus rutrum enim at orci consectetu blind\n<a href=\"https://a.com\"> link to a </a>\n</body>\n</html>");
-
-    string word = "Muzi";
+    string word = "blind";
     vector<string> pages;
-    pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://careers.kakao.com/interview/list\"/>\n</head>  \n<body>\n<a href=\"https://programmers.co.kr/learn/courses/4673\"></a>#!MuziMuzi!)jayg07con&&\n\n</body>\n</html>");
-    pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://www.kakaocorp.com\"/>\n</head>  \n<body>\ncon%\tmuzI92apeach&2<a href=\"https://hashcode.co.kr/tos\"></a>\n\n\t^\n</body>\n</html>");
+    pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://a.com\"/>\n</head>  \n<body>\nblind lorem blind ipsum dolor blind test sit amet, consectetur adipiscing elit. \n<a href=\"https://b.com\"> link to b </a>\n</body>\n</html>");
+    pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://b.com\"/>\n</head>  \n<body>\nsuspendisse potenti. vivamus venenatis tellus non turpis bibendum, \n<a href=\"https://a.com\"> link to a </a>\nblind sed congue urna varius. suspendisse feugiat nisl ligula, quis malesuada felis hendrerit ut.\n<a href=\"https://c.com\"> link to c </a>\n</body>\n</html>");;
+    pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://c.com\"/>\n</head>  \n<body>\nut condimentum urna at felis sodales rutrum. sed dapibus cursus diam, non interdum nulla tempor nec. phasellus rutrum enim at orci consectetu blind\n<a href=\"https://a.com\"> link to a </a>\n</body>\n</html>");
+
+    //string word = "Muzi";
+    //vector<string> pages;
+    //pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://careers.kakao.com/interview/list\"/>\n</head>  \n<body>\n<a href=\"https://programmers.co.kr/learn/courses/4673\"></a>#!MuziMuzi!)jayg07con&&\n\n</body>\n</html>");
+    //pages.push_back("<html lang=\"ko\" xml:lang=\"ko\" xmlns=\"http://www.w3.org/1999/xhtml\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta property=\"og:url\" content=\"https://www.kakaocorp.com\"/>\n</head>  \n<body>\ncon%\tmuzI92apeach&2<a href=\"https://hashcode.co.kr/tos\"></a>\n\n\t^\n</body>\n</html>");
 
     cout << solution(word, pages);
 
