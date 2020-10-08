@@ -158,5 +158,11 @@
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42892_U.cpp)  
 	- vector<struct>, set<int>, unordered_map<int, int>  
 	- 특이사항 : 트리 생성, preorder, postorder를 구현  
-- [매칭 점수]  
+- [매칭 점수](https://programmers.co.kr/learn/courses/30/lessons/42893)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42893_U.cpp)  
+	- vector<string>, unordered_map<string, int>, toupper(), tolower(), substr(), find(), string::npos    
+	- Failed 1 : <head>, </head>, <body>, </body>를 찾아서 잘라내야 풀이가 됨.   
+	- Failed 2 : "<meta property=\"og:url\"" 이걸 먼저 찾아 잘라내고 "content=\"https://" 이걸 찾아야 사용가능
+	- Failed 3 : 검색어 검색시에 앞뒤로 대, 소문자가 이어져선 안됨.  
+	- 특이사항 : 개인적으로 최악의 문제.  
 - [블록게임]  
