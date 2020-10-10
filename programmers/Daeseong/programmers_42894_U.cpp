@@ -7,146 +7,91 @@
 
 using namespace std;
 
-#define N_MAX 50
-
-vector<int> x_vec[N_MAX];
-int N;
-
 typedef struct LOCATE {
     int id;
-    int x;
-    int y;
-    int type;       // -1 : 가로, 1 : 세로
+    int type;
+    vector<pair<int, int>> locate;
+    bool is_deleted;
 } LOCATE;
 
-bool box_check(LOCATE target) {
-    if (x_vec[target.x][target.y] == -1) return false;
-    int lineCnt = 0;
+LOCATE shape_type(int x, int y, vector<vector<int>> board, int N) {
+    LOCATE result;
+    result.locate.push_back(make_pair(x, y));
 
-    switch (target.type) {
-    case -1:
-        if (target.y == N - 1) return false;
-        if (x_vec[target.x - 1][target.y + 1] == target.id || x_vec[target.x][target.y + 1] == target.id || x_vec[target.x + 1][target.y + 1] == target.id) {
-            //cout << "horizon : " << x_vec[target.x - 1][target.y + 1] << ", " << x_vec[target.x][target.y + 1] << ", " << x_vec[target.x + 1][target.y + 1] << endl;
+    result.id = board[y][x];
+    result.type = -1;
 
-            if (x_vec[target.x - 1][target.y + 1] != -1 && x_vec[target.x - 1][target.y + 1] != target.id) return false;
-            if (x_vec[target.x][target.y + 1] != -1 && x_vec[target.x][target.y + 1] != target.id) return false;
-            if (x_vec[target.x + 1][target.y + 1] != -1 && x_vec[target.x + 1][target.y + 1] != target.id) return false;
-
-            //cout << "horizon : " << x_vec[target.x - 1][target.y + 1] << ", " << x_vec[target.x][target.y + 1] << ", " << x_vec[target.x + 1][target.y + 1] << endl;
-
-            for (int i = target.y + 1; i >= 0; i--) {
-                if (x_vec[target.x - 1][i] == -1) continue;
-                else if (x_vec[target.x - 1][i] == target.id) x_vec[target.x - 1][i] = -1;
-                else if (x_vec[target.x - 1][i] == 0) x_vec[target.x - 1][i] = -1;
-                else break;
-            }
-            for (int i = target.y + 1; i >= 0; i--) {
-                if (x_vec[target.x][i] == -1) continue;
-                if (x_vec[target.x][i] == target.id) x_vec[target.x][i] = -1;
-                else if (x_vec[target.x][i] == 0) x_vec[target.x][i] = -1;
-                else break;
-            }
-            for (int i = target.y + 1; i >= 0; i--) {
-                if (x_vec[target.x + 1][i] == -1) continue;
-                if (x_vec[target.x + 1][i] == target.id) x_vec[target.x + 1][i] = -1;
-                else if (x_vec[target.x + 1][i] == 0) x_vec[target.x + 1][i] = -1;
-                else break;
-            }
-
-            return true;
+    if (x + 2 < N && y + 1 < N) {
+        if (board[x][y + 1] == result.id || board[x + 1][y + 1] == result.id || board[x + 2][y + 1] == result.id) {
+            result.locate.push_back(make_pair(x, y + 1));
+            result.locate.push_back(make_pair(x + 1, y + 1));
+            result.locate.push_back(make_pair(x + 2, y + 1));
+            result.type = 1;
         }
-        break;
-    case 1:
-        int locate = 0;
-        if (target.x == N - 1) locate = -1;
-        else if (target.x == 0) locate = 1;
-        else if (x_vec[target.x - 1][target.y - 1] == target.id || x_vec[target.x - 1][target.y] == target.id || x_vec[target.x - 1][target.y + 1] == target.id) locate = -1;
-        else if (x_vec[target.x + 1][target.y - 1] == target.id || x_vec[target.x + 1][target.y] == target.id || x_vec[target.x + 1][target.y + 1] == target.id) locate = 1;
-
-        //cout << "vertical : " << x_vec[target.x + locate][target.y - 1] << ", " << x_vec[target.x + locate][target.y] << ", " << x_vec[target.x + locate][target.y + 1] << endl;
-
-        if (x_vec[target.x + locate][target.y - 1] != -1 && x_vec[target.x + locate][target.y - 1] != target.id) return false;
-        if (x_vec[target.x + locate][target.y] != -1 && x_vec[target.x + locate][target.y] != target.id) return false;
-        if (x_vec[target.x + locate][target.y + 1] != -1 && x_vec[target.x + locate][target.y + 1] != target.id) return false;
-
-        //cout << "vertical : " << x_vec[target.x + locate][target.y - 1] << ", " << x_vec[target.x + locate][target.y] << ", " << x_vec[target.x + locate][target.y + 1] << endl;
-
-        for (int i = target.y + 1; i >= 0; i--) {
-            if (x_vec[target.x][i] == -1) continue;
-            if (x_vec[target.x][i] == target.id) x_vec[target.x][i] = -1;
-            else if (x_vec[target.x][i] == 0) x_vec[target.x][i] = -1;
-            else break;
+    }
+    else if (x - 1 >= 0 && x + 1 < N && y + 1 < N) {
+        if (board[x - 1][y + 1] == result.id || board[x][y + 1] == result.id || board[x + 1][y + 1] == result.id) {
+            result.locate.push_back(make_pair(x - 1, y + 1));
+            result.locate.push_back(make_pair(x, y + 1));
+            result.locate.push_back(make_pair(x + 1, y + 1));
+            result.type = 2;
         }
-        for (int i = target.y + 1; i >= 0; i--) {
-            if (x_vec[target.x + locate][i] == -1) continue;
-            if (x_vec[target.x + locate][i] == target.id) x_vec[target.x + locate][i] = -1;
-            else if (x_vec[target.x + locate][i] == 0) x_vec[target.x + locate][i] = -1;
-            else break;
+    }
+    else if (x - 2 >= 0 && y + 1 < N) {
+        if (board[x - 2][y + 1] == result.id || board[x - 1][y + 1] == result.id || board[x][y + 1] == result.id) {
+            result.locate.push_back(make_pair(x - 2, y + 1));
+            result.locate.push_back(make_pair(x - 1, y + 1));
+            result.locate.push_back(make_pair(x, y + 1));
+            result.type = 3;
         }
-
-        return true;
+    }
+    else if (x + 1 < N && y + 2 < N) {
+        if (board[x][y + 1] == result.id || board[x][y + 2] == result.id || board[x + 1][y + 2] == result.id) {
+            result.locate.push_back(make_pair(x, y + 1));
+            result.locate.push_back(make_pair(x, y + 2));
+            result.locate.push_back(make_pair(x + 1, y + 2));
+            result.type = 4;
+        }
+    }
+    else if (x - 1 >= 0 && y + 2 < N) {
+        if (board[x][y + 1] == result.id || board[x][y + 2] == result.id || board[x - 1][y + 2] == result.id) {
+            result.locate.push_back(make_pair(x, y + 1));
+            result.locate.push_back(make_pair(x, y + 2));
+            result.locate.push_back(make_pair(x - 1, y + 2));
+            result.type = 5;
+        }
     }
 
-    return false;
+    return result;
 }
 
 int solution(vector<vector<int>> board) {
     int answer = 0;
+    int N = board.size();
 
-    unordered_map<int, LOCATE> m;
+    unordered_map<int, int> m;
     int m_index = 0;
-
-    N = board.size();
+    vector<LOCATE> vec;
 
     for (int y = 0; y < N; y++) {
         for (int x = 0; x < N; x++) {
             if (board[y][x] == 0) continue;
-            if (y == 0 || y == N - 1) {
-                if (x == 0 || x == N - 1) continue;
-                if (board[y][x] == board[y][x - 1] && board[y][x] == board[y][x + 1]) {
-                    m.insert({ m_index++, {board[y][x], x, N - 1 - y, -1} });
-                }
-            }
-            else if (x == 0 || x == N - 1) {
-                if (y == 0 || y == N - 1) continue;
-                if (board[y][x] == board[y - 1][x] && board[y][x] == board[y + 1][x]) {
-                    m.insert({ m_index++, {board[y][x], x, N - 1 - y, 1} });
-                }
-            }
-            else {
-                if (board[y][x] == board[y][x - 1] && board[y][x] == board[y][x + 1]) {
-                    m.insert({ m_index++, {board[y][x], x, N - 1 - y, -1} });
-                }
-                if (board[y][x] == board[y - 1][x] && board[y][x] == board[y + 1][x]) {
-                    m.insert({ m_index++, {board[y][x], x, N - 1 - y, 1} });
-                }
-            }
+            if (m.count(board[y][x]) == 1) continue;
+            m.insert({ board[y][x], m_index++ });
+
+            LOCATE temp = shape_type(x, y, board, N);
+            if (temp.type == -1) continue;
+            vec.push_back(temp);
         }
     }
 
-    for (int x = 0; x < N; x++) {
-        int y_top;
-        for (y_top = 0; y_top < N; y_top++) if (board[y_top][x] != 0) break;
-        for (int y = N - 1; y >= y_top; y--) x_vec[x].push_back(board[y][x]);
-        while (x_vec[x].size() != N) {
-            x_vec[x].push_back(-1);
+    for (int i = 0; i < vec.size(); i++) {
+        cout << vec[i].id << ", " << vec[i].type << " : ";
+        for (int j = 0; j < vec[i].locate.size(); j++) {
+            cout << "(" << vec[i].locate[j].first << ", " << vec[i].locate[j].second << ") ";
         }
-    }
 
-    //for (int i = 0; i < m_index; i++) {
-    //    cout << m[i].id << ", " << m[i].x << ", " << m[i].y << ", " << m[i].type << endl;
-    //}
-
-    bool is_change = true;
-    while (is_change) {
-        is_change = false;
-        for (int i = 0; i < m_index; i++) {
-            if (box_check(m[i])) {
-                is_change = true;
-                answer++;
-            }
-        }
+        cout << endl;
     }
 
     return answer;
