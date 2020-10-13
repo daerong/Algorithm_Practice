@@ -136,7 +136,7 @@
 - [[3차] n진수 게임](https://programmers.co.kr/learn/courses/30/lessons/17687)   
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17687_U.cpp)  
 	- N진법 풀이  
-#### 2018 KAKAO BLIND RECRUITMENT 
+#### 2019 KAKAO BLIND RECRUITMENT 
 - [오픈채팅방](https://programmers.co.kr/learn/courses/30/lessons/42888)   
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42888_U.cpp)  
 	- unordered_map<string, int>, queue<struct>, stringstream  
@@ -165,4 +165,48 @@
 	- Failed 2 : "<meta property=\"og:url\"" 이걸 먼저 찾아 잘라내고 "content=\"https://" 이걸 찾아야 사용가능
 	- Failed 3 : 검색어 검색시에 앞뒤로 대, 소문자가 이어져선 안됨.  
 	- 특이사항 : 개인적으로 최악의 문제.  
-- [블록게임]  
+- [블록게임](https://programmers.co.kr/learn/courses/30/lessons/42894)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42894_U.cpp)  
+	- vector<struct>, unordered_map<int, int>
+	- 특이사항 : 도형 중 5가지 형태만 제거가 가능하므로 해당 케이스만 고려하면 수월하다.  
+
+#### 삼성 SW 역량 테스트  
+- [구슬 탈출 2]  
+- [2048 (Easy)]  
+- [뱀]  
+- [시험 감독]  
+- [주사위 굴리기]  
+- [테트로미노]  
+- [퇴사]  
+- [연구소]  
+- [로봇 청소기]  
+- [연산자 끼워넣기]  
+- [스타트와 링크]  
+- [경사로]  
+- [톱니바퀴]  
+- [감시]  
+- [사다리 조작]  
+- [드래곤 커브]  
+- [치킨 배달]  
+- [큐빙]  
+- [인구 이동]  
+- [나무 재테크](https://www.acmicpc.net/problem/16235)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/16235_U.cpp)  
+	- vector<struct>, unordered_map<int, int>  
+	- Failed 1 : vector<TREE>를 사용해 매 TREE마다 증가시키는 방식 사용  
+		- 이 경우 TREE가 분열하면서 늘어가는 반복문을 감당할 수 없음.
+		- 따라서 (r, c)에 위치한 y년차의 나무의 갯수를 담는 3차원 배열 trees[r][c][y]를 사용하여 해결.
+	- 특이사항 : 효율성 평가기준에 충족하는 알고리즘을 떠올리기 쉽지 않았다.  
+- [아기 상어]  
+- [미세먼지 안녕!]  
+- [낚시왕]  
+- [이차원 배열과 연산]  
+- [연구소 3]  
+- [게리맨더링 2]  
+- [새로운 게임 2]  
+- [원판 돌리기]  
+- [주사위 윷놀이]  
+- [모노미노도미노]  
+- [청소년 상어]  
+- [어른 상어]  
+- [스타트 택시]  
