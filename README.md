@@ -185,7 +185,11 @@
 - [경사로]  
 - [톱니바퀴]  
 - [감시]  
-- [사다리 조작]  
+- [사다리 조작](https://www.acmicpc.net/problem/15684)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/15684_U.cpp)    
+	- Failed 1 : 사다리가 trick이 되는 조건을 한정시켜서 풀었는데 예외의 상황이 있었던 것 같다.
+	- Failed 2 : is_trick을 매번 확인하면 time over가 발생한다. add stick 갯수를 0~3으로 증가시키며 체크하는 게 핵심.
+	- DFS 
 - [드래곤 커브]  
 - [치킨 배달]  
 - [큐빙]  
