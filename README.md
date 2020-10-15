@@ -204,7 +204,11 @@
 		- 이 경우 TREE가 분열하면서 늘어가는 반복문을 감당할 수 없음.
 		- 따라서 (r, c)에 위치한 y년차의 나무의 갯수를 담는 3차원 배열 trees[r][c][y]를 사용하여 해결.
 	- 특이사항 : 효율성 평가기준에 충족하는 알고리즘을 떠올리기 쉽지 않았다.  
-- [아기 상어]  
+- [아기 상어](https://www.acmicpc.net/problem/16236)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/16236_U.cpp)  
+	- queue<struct>  
+	- BFS  
+	- 특이사항 : DFS보다 BFS가 빠른 문제      
 - [미세먼지 안녕!]  
 - [낚시왕]  
 - [이차원 배열과 연산]  
