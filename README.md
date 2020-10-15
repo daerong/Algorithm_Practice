@@ -193,7 +193,10 @@
 - [드래곤 커브]  
 - [치킨 배달]  
 - [큐빙]  
-- [인구 이동]  
+- [인구 이동](https://www.acmicpc.net/problem/16234)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/16234_U.cpp)  
+	- Union-Find, get_parent  
+	- 특이사항 : Union-Find 응용하여 풀이  
 - [나무 재테크](https://www.acmicpc.net/problem/16235)   
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/16235_U.cpp)  
 	- vector<struct>, unordered_map<int, int>  
