@@ -209,7 +209,10 @@
 	- queue<struct>  
 	- BFS  
 	- 특이사항 : DFS보다 BFS가 빠른 문제      
-- [미세먼지 안녕!]  
+- [미세먼지 안녕!](https://www.acmicpc.net/problem/17144)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17144_U.cpp)  
+	- vector<vector<int>>    
+	- 특이사항 : 매개변수에서 깊은 복사된 2차원 배열이 사용되어 vector<vector<int>> 사용함     
 - [낚시왕]  
 - [이차원 배열과 연산]  
 - [연구소 3]  
