@@ -231,8 +231,13 @@
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17779_U.cpp)  
 	- vector<int>, sort()
 	- 특이사항 : 경계를 나눌 때 생각할 게 많음.  
-- [새로운 게임 2]  
-- [원판 돌리기]  
+- [새로운 게임 2](https://www.acmicpc.net/problem/17837)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17837_U.cpp)  
+	- vector<struct>, vector<vector<struct>>
+	- Failed 1 : STONE map[y][x] 같은 사용은 불가. vector<vector<STONE>>사용.
+	- Failed 2 : 이동하는 돌 밑에 있는 돌은 움직이지 않는다.
+	- 특이사항 : 돌의 이동조건 잘 살피기.    
+- [원판 돌리기] 
 - [주사위 윷놀이]  
 - [모노미노도미노]  
 - [청소년 상어]  
