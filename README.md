@@ -218,7 +218,10 @@
 	- vector<struct>  
 	- Failed 1 : shark 배열을 사용하니 컴파일 에러가 발생함. 로컬은 가능한데 백준에서는 불가능 한듯  
 	- 특이사항 : 이동관련하여 매우 까다로운 처리  
-- [이차원 배열과 연산]  
+- [이차원 배열과 연산](https://www.acmicpc.net/problem/17140)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17140_U.cpp)  
+	- vector<struct>, sort()  
+	- 특이사항 : 행과 열의 크기가 변하는 정렬, 숫자와 숫자의 갯수로 새로운 행열을 만들어감.    
 - [연구소 3]  
 - [게리맨더링 2]  
 - [새로운 게임 2]  
