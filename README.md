@@ -222,8 +222,15 @@
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17140_U.cpp)  
 	- vector<struct>, sort()  
 	- 특이사항 : 행과 열의 크기가 변하는 정렬, 숫자와 숫자의 갯수로 새로운 행열을 만들어감.    
-- [연구소 3]  
-- [게리맨더링 2]  
+- [연구소 3](https://www.acmicpc.net/problem/17142)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17142_U.cpp)  
+	- vector<struct>, queue<struct>
+	- BFS, Combination
+	- 특이사항 : 조합을 만들 수 있는 지를 확인하는 문제. 바이러스의 확산은 BFS 사용.
+- [게리맨더링 2](https://www.acmicpc.net/problem/17779)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17779_U.cpp)  
+	- vector<int>, sort()
+	- 특이사항 : 경계를 나눌 때 생각할 게 많음.  
 - [새로운 게임 2]  
 - [원판 돌리기]  
 - [주사위 윷놀이]  
