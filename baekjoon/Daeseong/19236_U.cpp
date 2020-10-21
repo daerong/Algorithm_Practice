@@ -1,141 +1,122 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
+
+#define SHARK -2
+#define N_MAX 4
+
+typedef struct MAP {
+    int index;
+    int dir;
+} MAP;
+
+typedef struct FISH {
+    int x;
+    int y;
+} FISH;
 
 using namespace std;
 
-typedef struct FISH {
-	int x;
-	int y;
-	int dir;
-	bool is_dead;
-} FISH;
+// ¡è, ¢Ø, ¡ç, ¢×, ¡é, ¢Ù, ¡æ, ¢Ö
+const int dx[8] = { 0, -1, -1, -1, 0, 1, 1, 1 };
+const int dy[8] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
-int dx[] = { 0, -1, -1, -1, 0, 1, 1, 1 };
-int dy[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
+void input(vector<FISH>& fishes, vector<vector<MAP>>& map) {
+    for (int i = 0; i <= 16; i++) fishes.push_back({ -1, -1 });
+    for (int y = 0; y < N_MAX; y++) {
+        vector<MAP> line;
+        for (int x = 0; x < N_MAX; x++) {
+            MAP temp;
+            cin >> temp.index >> temp.dir;
+            temp.dir -= 1;
+            line.push_back(temp);
 
-int N = 4;
-int answer = 0;
-
-vector<FISH> fishes;
-
-vector<vector<int>> input() {
-	for (int i = 0; i <= 16; i++) fishes.push_back({ -1, -1, -1, false });
-
-	vector<vector<int>> map;
-	for (int y = 0; y < N; y++) {
-		vector<int> line;
-		for (int x = 0; x < N; x++) {
-			int index, dir;
-			cin >> index >> dir;
-			fishes[index].x = x;
-			fishes[index].y = y;
-			fishes[index].dir = dir - 1;
-			line.push_back(index);
-		}
-
-		map.push_back(line);
-	}
-
-	return map;
+            fishes[temp.index] = { x, y };
+        }
+        map.push_back(line);
+    }
 }
 
-string print_dir(int dir) {
-	switch (dir) {
-	case 0: return "¡è";
-	case 1: return "¢Ø";
-	case 2: return "¡ç";
-	case 3: return "¢×";
-	case 4: return "¡é";
-	case 5: return "¢Ù";
-	case 6: return "¡æ";
-	case 7: return "¢Ö";
-	}
-}
-void print_map(int shark_x, int shark_y, vector<vector<int>> cp_map) {
-	for (int y = 0; y < N; y++) {
-		for (int x = 0; x < N; x++) {
-			if (x == shark_x && y == shark_y) cout << "S ";
-			else if (fishes[cp_map[y][x]].is_dead) cout << "X ";
-			else if (cp_map[y][x] >= 10) cout << cp_map[y][x];
-			else cout << "0" << cp_map[y][x];
-			cout << print_dir(fishes[cp_map[y][x]].dir) << " ";
-		}
-		cout << endl;
-	}
-}
+void moveFishs(vector<vector<MAP>>& map, vector<FISH>& fishes) {
+    for (int i = 1; i <= 16; i++) {
+        if (fishes[i].y == -1) continue;
+        FISH* fish;
+        FISH* nFish;
+        fish = &fishes[i];
 
-void fish_move(int shark_x, int shark_y, vector<vector<int>>& cp_map) {
-	for (int i = 1; i < fishes.size(); i++) {
-		if (fishes[i].is_dead) continue;
-		FISH* origin = &fishes[i];
-		FISH* target = nullptr;
+        MAP* block1 = &map[fish->y][fish->x];
+        MAP* block2 = nullptr;
 
-		for (int angle = 0; angle < 8; angle++) {
-			int temp_dir = origin->dir + angle;
-			if (temp_dir >= 8) temp_dir -= 8;
+        int nx, ny;
+        for (int dir = 0; dir < 8; dir++) {
+            nx = fish->x + dx[block1->dir];
+            ny = fish->y + dy[block1->dir];
+            if (ny < 0 || ny >= N_MAX || nx < 0 || nx >= N_MAX || map[ny][nx].index == SHARK) {
+                block1->dir = (block1->dir + 1) % 8;
+                continue;
+            }
 
-			int nx = origin->x + dx[temp_dir];
-			int ny = origin->y + dy[temp_dir];
-			if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
-			if (nx == shark_x && ny == shark_y) continue;
+            // MAP swap()
+            block2 = &map[ny][nx];
+            MAP block_temp = map[ny][nx];
+            *block2 = *block1;
+            *block1 = block_temp;
 
-			int target_id = cp_map[ny][nx];
-			target = &fishes[target_id];
-			break;
-		}
+            // FISH swap()
+            nFish = &fishes[block_temp.index];
+            *nFish = *fish;
+            *fish = { nx, ny };
 
-		if (target != nullptr) {
-			int temp = cp_map[target->y][target->x];
-			cp_map[target->y][target->x] = cp_map[origin->y][origin->x];
-			cp_map[origin->y][origin->x] = temp;
-			temp = target->x;
-			target->x = origin->x;
-			origin->x = temp;
-			temp = target->y;
-			target->y = origin->y;
-			origin->y = temp;
-		}
-	}
+            break;
+        }
+    }
 }
 
-void shark_move(int x, int y, int cnt, vector<vector<int>> map) {
-	if (fishes[map[y][x]].is_dead) return;
-	fishes[map[y][x]].is_dead = true;
 
-	int summation = cnt + map[y][x];
-	int dir = fishes[map[y][x]].dir;
+int dfs(int x, int y, vector<vector<MAP>> map, vector<FISH> fishes) {
+    int answer = 0;
 
-	vector<vector<int>> cp_map;
-	cp_map.assign(map.begin(), map.end());
+    moveFishs(map, fishes);
 
-	fish_move(x, y, cp_map);
+    int fishFirst, fishSecond;
+    int boardFirst;
 
-	cout << print_dir(dir) << ", " << summation << endl;
-	print_map(x, y, cp_map);
+    for (int i = 1; i <= 3; i++) {
+        int ny = y + dy[map[y][x].dir] * i;
+        int nx = x + dx[map[y][x].dir] * i;
+        if (ny < 0 || ny >= N_MAX || nx < 0 || nx >= N_MAX) break;
+        if (map[ny][nx].index == 0) continue;
 
-	for (int len = 1; len <= 3; len++) {
-		int nx = x + dx[dir] * len;
-		int ny = y + dy[dir] * len;
-		if (nx < 0 || nx >= N || ny < 0 || ny >= N) continue;
-		shark_move(nx, ny, summation, cp_map);
-	}
 
-	if (answer < summation) answer = summation;
-	fishes[map[y][x]].is_dead = false;
-}
+        fishFirst = fishes[map[ny][nx].index].y;
+        fishSecond = fishes[map[ny][nx].index].x;
+        fishes[map[ny][nx].index] = { -1, -1 };
+        boardFirst = map[ny][nx].index;
+        map[ny][nx].index = SHARK;
+        map[y][x].index = 0;
 
-void solution() {
-	vector<vector<int>> map = input();
-	shark_move(0, 0, 0, map);
-	cout << answer << endl;
+        answer = max(answer, dfs(nx, ny, map, fishes) + boardFirst);
+
+        map[y][x].index = SHARK;
+        map[ny][nx].index = boardFirst;
+        fishes[map[ny][nx].index] = { fishSecond, fishFirst };
+
+    }
+
+
+    return answer;
 }
 
 int main() {
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-	cout.tie(NULL);
+    vector<FISH> fishes;
+    vector<vector<MAP>> map;
+    input(fishes, map);
 
-	solution();
+    int temp = map[0][0].index;
+    fishes[map[0][0].index] = { -1, -1 };
+    map[0][0].index = SHARK;
 
-	return 0;
+    cout << dfs(0, 0, map, fishes) + temp;
+
+    return 0;
 }
