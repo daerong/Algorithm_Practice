@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 
+using namespace std;
+
 #define SHARK -2
 #define N_MAX 4
 
@@ -13,16 +15,17 @@ typedef struct MAP {
 typedef struct FISH {
     int x;
     int y;
+    bool is_dead;
 } FISH;
-
-using namespace std;
 
 // ¡è, ¢Ø, ¡ç, ¢×, ¡é, ¢Ù, ¡æ, ¢Ö
 const int dx[8] = { 0, -1, -1, -1, 0, 1, 1, 1 };
 const int dy[8] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
+MAP* shark;
+
 void input(vector<FISH>& fishes, vector<vector<MAP>>& map) {
-    for (int i = 0; i <= 16; i++) fishes.push_back({ -1, -1 });
+    for (int i = 0; i <= 16; i++) fishes.push_back({ -1, -1, false });
     for (int y = 0; y < N_MAX; y++) {
         vector<MAP> line;
         for (int x = 0; x < N_MAX; x++) {
@@ -31,7 +34,7 @@ void input(vector<FISH>& fishes, vector<vector<MAP>>& map) {
             temp.dir -= 1;
             line.push_back(temp);
 
-            fishes[temp.index] = { x, y };
+            fishes[temp.index] = { x, y, false };
         }
         map.push_back(line);
     }
@@ -39,7 +42,7 @@ void input(vector<FISH>& fishes, vector<vector<MAP>>& map) {
 
 void moveFishs(vector<vector<MAP>>& map, vector<FISH>& fishes) {
     for (int i = 1; i <= 16; i++) {
-        if (fishes[i].y == -1) continue;
+        if (fishes[i].is_dead) continue;
         FISH* fish;
         FISH* nFish;
         fish = &fishes[i];
@@ -78,29 +81,30 @@ int dfs(int x, int y, vector<vector<MAP>> map, vector<FISH> fishes) {
 
     moveFishs(map, fishes);
 
-    int fishFirst, fishSecond;
-    int boardFirst;
+    MAP* origin = &map[y][x];
+    FISH fish;
 
     for (int i = 1; i <= 3; i++) {
-        int ny = y + dy[map[y][x].dir] * i;
-        int nx = x + dx[map[y][x].dir] * i;
+        int ny = y + dy[origin->dir] * i;
+        int nx = x + dx[origin->dir] * i;
         if (ny < 0 || ny >= N_MAX || nx < 0 || nx >= N_MAX) break;
         if (map[ny][nx].index == 0) continue;
 
 
-        fishFirst = fishes[map[ny][nx].index].y;
-        fishSecond = fishes[map[ny][nx].index].x;
-        fishes[map[ny][nx].index] = { -1, -1 };
-        boardFirst = map[ny][nx].index;
-        map[ny][nx].index = SHARK;
-        map[y][x].index = 0;
+        MAP* target = &map[ny][nx];
+        fish = fishes[target->index];
+        fishes[target->index].is_dead = true;
 
-        answer = max(answer, dfs(nx, ny, map, fishes) + boardFirst);
+        MAP temp = *target;
+        target->index = SHARK;
+        origin->index = 0;
 
-        map[y][x].index = SHARK;
-        map[ny][nx].index = boardFirst;
-        fishes[map[ny][nx].index] = { fishSecond, fishFirst };
+        answer = max(answer, dfs(nx, ny, map, fishes) + temp.index);
 
+        origin->index = SHARK;
+        target->index = temp.index;
+
+        fishes[target->index] = fish;
     }
 
 
@@ -112,11 +116,14 @@ int main() {
     vector<vector<MAP>> map;
     input(fishes, map);
 
-    int temp = map[0][0].index;
-    fishes[map[0][0].index] = { -1, -1 };
+    int answer = map[0][0].index;
+
+    fishes[map[0][0].index].is_dead = true;
     map[0][0].index = SHARK;
 
-    cout << dfs(0, 0, map, fishes) + temp;
+    answer += dfs(0, 0, map, fishes);
+
+    cout << answer;
 
     return 0;
 }
