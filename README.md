@@ -14,10 +14,6 @@
 	- [Kruskal's Algorithm](#kruskals-algorithm)  
 	- [Prim's Algorithm](#prims-algorithm)  
 
-
-
-
-
 ### Greedy Method  
 - [Description](https://github.com/daerong/Basic_Learning/blob/master/Algorithm/Greedy_Method.md)  
 - Keywords  
