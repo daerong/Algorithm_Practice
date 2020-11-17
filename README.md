@@ -165,6 +165,18 @@
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42894_U.cpp)  
 	- vector<struct>, unordered_map<int, int>
 	- 특이사항 : 도형 중 5가지 형태만 제거가 가능하므로 해당 케이스만 고려하면 수월하다.  
+#### 2019 KAKAO BLIND RECRUITMENT  
+- [문자열 압축](https://programmers.co.kr/learn/courses/30/lessons/60057)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_60057_U.cpp)  
+	- unordered_map<string, int>, vector<int>, substr()  
+	- Failed 1 : 5번 TC, 절반의 범위를  s.length() / 2 + 1로 해야됨. 
+	- 특이사항 : 문자열 내 동일 문자열 압축방식  
+- [괄호 변환]  
+- [자물쇠와 열쇠]  
+- [가사 검색]  
+- [기둥과 보 설치]  
+- [외벽 점검]  
+- [블록 이동하기]  
 
 #### 삼성 SW 역량 테스트  
 - [구슬 탈출 2]  
