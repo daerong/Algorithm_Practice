@@ -171,7 +171,11 @@
 	- unordered_map<string, int>, vector<int>, substr()  
 	- Failed 1 : 5번 TC, 절반의 범위를  s.length() / 2 + 1로 해야됨. 
 	- 특이사항 : 문자열 내 동일 문자열 압축방식  
-- [괄호 변환]  
+- [괄호 변환](https://programmers.co.kr/learn/courses/30/lessons/60058)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_60058_U.cpp)  
+	- substr()  
+	- Failed 1 : 문자열의 순서가 뒤바뀌는 것이 아닌, '(' -> ')', ')' -> '('로 바뀌는 것이다.  
+	- 특이사항 : 시뮬레이션 문제  
 - [자물쇠와 열쇠]  
 - [가사 검색]  
 - [기둥과 보 설치]  
