@@ -249,7 +249,9 @@
 	- Failed 1 : STONE map[y][x] 같은 사용은 불가. vector<vector<STONE>>사용.
 	- Failed 2 : 이동하는 돌 밑에 있는 돌은 움직이지 않는다.
 	- 특이사항 : 돌의 이동조건 잘 살피기.    
-- [원판 돌리기] 
+- [원판 돌리기](https://www.acmicpc.net/problem/17822)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17822_U.cpp)  
+	- Failed 1 : 배열의 실제 값을 바꾸지 않고 12시를 가르키는 index를 사용했는데, 이러면 BFS를 사용할 수 없음.  
 - [주사위 윷놀이]  
 - [모노미노도미노]  
 - [청소년 상어]  
