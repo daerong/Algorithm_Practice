@@ -254,7 +254,7 @@
 	- Failed 1 : 배열의 실제 값을 바꾸지 않고 12시를 가르키는 index를 사용했는데, 이러면 BFS를 사용할 수 없음.  
 	- vector<vector<int>>, vector<int>, queue<pair<int, int>>, vector<pair<int, int>>  
 	- 특이사항 : 배열의 순서를 바꾸지 않고 index를 변경하여 사용.  
-- [주사위 윷놀이]  
+- [주사위 윷놀이](https://www.acmicpc.net/problem/17825)  
 - [모노미노도미노]  
 - [청소년 상어]  
 - [어른 상어]  
