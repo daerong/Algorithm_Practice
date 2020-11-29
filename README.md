@@ -255,7 +255,11 @@
 	- vector<vector<int>>, vector<int>, queue<pair<int, int>>, vector<pair<int, int>>  
 	- 특이사항 : 배열의 순서를 바꾸지 않고 index를 변경하여 사용.  
 - [주사위 윷놀이](https://www.acmicpc.net/problem/17825)  
-- [모노미노도미노]  
-- [청소년 상어]  
-- [어른 상어]  
-- [스타트 택시]  
+- [모노미노도미노](https://www.acmicpc.net/problem/20061)  
+- [청소년 상어](https://www.acmicpc.net/problem/19236)  
+- [어른 상어](https://www.acmicpc.net/problem/19237)  
+- [스타트 택시](https://www.acmicpc.net/problem/19238)  
+- [컨베이어 벨트 위의 로봇](https://www.acmicpc.net/problem/20055)  
+- [마법사 상어와 파이어볼](https://www.acmicpc.net/problem/20056)  
+- [마법사 상어와 토네이도](https://www.acmicpc.net/problem/20057)  
+- [마멉사 상어와 파이어스톰](https://www.acmicpc.net/problem/20058)  
