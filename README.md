@@ -255,6 +255,11 @@
 	- vector<vector<int>>, vector<int>, queue<pair<int, int>>, vector<pair<int, int>>  
 	- 특이사항 : 배열의 순서를 바꾸지 않고 index를 변경하여 사용.  
 - [주사위 윷놀이](https://www.acmicpc.net/problem/17825)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/17825_U.cpp)  
+	- Failed 1 : 중앙에서 이동할 때, 32번 위치가 도착지가 아니라 40으로 표기된 블럭임
+	- Failed 2 : 도착지 중복가능, 말이 탈출해야 다음말이 이동할 수 있다. ex > 예제 4번
+	- vector<int>  
+	- 특이사항 : 조건이 까다로워 map 세팅에 꽤 많은 시간이 소요됨  
 - [모노미노도미노](https://www.acmicpc.net/problem/20061)  
 - [청소년 상어](https://www.acmicpc.net/problem/19236)  
 - [어른 상어](https://www.acmicpc.net/problem/19237)  
