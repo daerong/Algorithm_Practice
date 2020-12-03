@@ -261,6 +261,9 @@
 	- vector<int>  
 	- 특이사항 : 조건이 까다로워 map 세팅에 꽤 많은 시간이 소요됨  
 - [모노미노도미노](https://www.acmicpc.net/problem/20061)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/20061_U.cpp)  
+	- vector<vector<int>>  
+	- 특이사항 : x, y의 좌표가 다르다. 하지만 답을 구하는 데 좌표는 중요하지 않았다  
 - [청소년 상어](https://www.acmicpc.net/problem/19236)  
 - [어른 상어](https://www.acmicpc.net/problem/19237)  
 - [스타트 택시](https://www.acmicpc.net/problem/19238)  
