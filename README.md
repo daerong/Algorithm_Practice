@@ -103,7 +103,7 @@
 	- queue<string>, deque<string>  
 - [[1차] 프렌즈4블록](https://programmers.co.kr/learn/courses/30/lessons/17679)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17679_U.cpp)  
-	- vector<char>, vector_erase()  
+	- vector<char>, vector.erase()  
 	- 특이사항 : 중간에서 삽입, 삭제가 일어남  
 - [[1차] 캐시](https://programmers.co.kr/learn/courses/30/lessons/17680)  
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_17680_U.cpp)  
@@ -143,7 +143,7 @@
 	- Failed 1 : 분모가 0인 경우, 예외처리가 필요하다.  
 - [후보키](https://programmers.co.kr/learn/courses/30/lessons/42890)   
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42890_U.cpp)  
-	- unordered_map<string, int>, vector<int>, vector_erase()  
+	- unordered_map<string, int>, vector<int>, vector.erase()  
 	- 특이사항 : 비트마스크 사용, 후보키 원리  
 	- Failed 1 : 비트마스크를 사용한 풀이를 떠올리기 힘들었다.  
 - [무지의 먹방 라이브](https://programmers.co.kr/learn/courses/30/lessons/42891)   
@@ -265,7 +265,12 @@
 	- vector<vector<int>>  
 	- 특이사항 : x, y의 좌표가 다르다. 하지만 답을 구하는 데 좌표는 중요하지 않았다  
 - [청소년 상어](https://www.acmicpc.net/problem/19236)  
-- [어른 상어](https://www.acmicpc.net/problem/19237)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/19236_U.cpp)  
+- [어른 상어](https://www.acmicpc.net/problem/19237)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/19237_U.cpp)  
+	- Failed 1 : 주변 블럭에 자기 채취가 담긴 블럭이 여러개 일 수 있다. 이 경우 우선순위가 높은 블럭으로 이동한다.
+	- vector<vector<struct>>, vector<struct>, vector.erase(), vector::iterator
+	- 특이사항 : 흔적이 남는 것을 구현하기 위해 turn을 기록하는 방식을 사용    
 - [스타트 택시](https://www.acmicpc.net/problem/19238)  
 - [컨베이어 벨트 위의 로봇](https://www.acmicpc.net/problem/20055)  
 - [마법사 상어와 파이어볼](https://www.acmicpc.net/problem/20056)  
