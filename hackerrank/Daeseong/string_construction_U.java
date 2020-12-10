@@ -1,3 +1,13 @@
+//Solution
+//- 문자에 쓰인 알파벳의 종류를 구하는 문제
+//- 처음 문제해석을 잘못함. (번역기를 믿지 말자)
+//- 1. 알파벳을 s에서 p로 옮기면 1을 증가시키고
+//- 2. p를 다시 p에 이어 붙이면 점수를 증가시킬 필요가 없는 줄 알았음.
+//- 풀이랄 건 없지만 한 번 적어본다.
+//- 1. chk[26] 배열을 false로 초기화
+//- 2. s의 각 문자에 해당하는 chk[]비트를 true로 변경.
+//- 3. chk[] 배열의 true 갯수를 리턴.
+
 import java.io.*;
 import java.math.*;
 import java.security.*;
@@ -11,26 +21,12 @@ public class Solution {
     // Complete the stringConstruction function below.
     static int stringConstruction(String s) {
         int answer = 0;
-        HashMap<String, Integer> m = new HashMap<>();
-        int m_index = 0;
-        String p = s.substring(0, 1);
-        s = s.substring(1);
-        answer += 1;
-        while(s.length() != 0){
-            if(p.length() > s.length()){
-                return answer + s.length();
-            }
-            else if(p.equals(s.substring(0, p.length()))){
-                if(p.length() == s.length()) return answer;
-                p += s.substring(0, p.length());
-                s = s.substring(p.length());
-            }
-            else{
-                p += s.substring(0, 1);
-                s = s.substring(1);
-                answer += 1;
-            }
+        boolean[] chk = new boolean[26];
+        Arrays.fill(chk, false);
+        for(int i = 0; i < s.length(); i++){
+            chk[s.charAt(i) - 'a'] = true;
         }
+        for(int i = 0; i < 26; i++) if(chk[i]) answer += 1;
 
         return answer;
     }
