@@ -1,3 +1,31 @@
+//Solution
+//- 출발지에서 도착지로 승객들을 옮기는 시뮬레이션 문제.
+//- Failed 1 : 출발지를 기준으로 승객 순서를 정렬해야하는데 도착지를 기준으로 정렬해버림.
+//- 풀이는 다음과 같다.
+//- 1. 주어진 정보로 문제에 필요한 값들을 세팅한다.
+//- 1.1. N : N x N의 맵 크기
+//- 1.2. M : 승객의 수
+//- 1.3. E : (초기)연료량
+//- 1.4. tx : 택시의 초기 위치
+//- 1.5. ty : 택시의 초기 위치
+//- 1.6. map : 맵 정보, N * N 크기의 배열. (1은 벽, 0은 길)
+//- 1.7. visited : 모든 성분이 false인 N * N 크기의 배열
+//- 1.8. man : 승객의 출발지-도착지 정보를 담은 벡터
+//- 2. man의 모든 성분에 대해 다음을 반복한다.
+//- 2.1. tx, ty와 승객 출발지 사이의 거리 get_dist() 값이 최소가 되는 승객을 찾는다.
+//- 2.1.1. get_dist()함수는 bfs로 최단거리를 찾는다.
+//- 2.1.2. 단, get_dist()의 값이 -1인 경우, 이동할 수 없는 위치에 승객이 있으므로 -1을 출력한다.
+//- 2.2. tx, ty를 2.1.에서 찾은 승객의 출발지로 이동시킨다.
+//- 2.2.1. E를 이동 칸 만큼 감소시킨다.
+//- 2.2.2. E가 0보다 작은 경우 -1을 출력한다.
+//- 2.3. tx, ty를 2.1.에서 찾은 승객의 도착지로 이동시킨다.
+//- 2.3.1. tx, ty의 위치에서 2.1.에서 찾은 승객의 도착지까지의 거리를 구한다.
+//- 2.3.2. E를 2.3.1.에서 구한 거리만큼 감소시킨다.
+//- 2.3.3. E가 0보다 작은 경우 -1을 출력한다.
+//- 2.4. man 벡터에서 이동시킨 승객을 제거한다.
+//- 2.5. man 벡터가 빈 배열인 경우 남은 E를 출력한다.
+//- 2.6. man 벡터가 비어있지 않은경우 2.로 돌아가 반복한다.
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -22,8 +50,8 @@ typedef struct DIST {
 } DIST;
 
 bool compare(MAN a, MAN b) {
-	if (a.ey == b.ey) return a.ex < b.ex;
-	else return a.ey < b.ey;
+	if (a.sy == b.sy) return a.sx < b.sx;
+	else return a.sy < b.sy;
 }
 
 int dx[] = { 0, -1, 0, 1 };
@@ -87,7 +115,6 @@ int solution() {
 	while (!man.empty()) {
 		vector<MAN>::iterator target;
 		int min_dist = DIST_MAX;
-		//cout << tx + 1 << ", " << ty + 1 << endl;
 		for (vector<MAN>::iterator iter = man.begin(); iter < man.end(); iter++) {
 			int dist = get_dist(iter->sx, iter->sy, visited);
 			if (dist == -1) return -1;
@@ -101,7 +128,6 @@ int solution() {
 		E -= min_dist;
 		tx = target->sx;
 		ty = target->sy;
-		//cout << tx + 1 << ", " << ty + 1 << endl;
 
 		min_dist = get_dist(target->ex, target->ey, visited);
 		if (min_dist == -1) return -1;
@@ -111,7 +137,6 @@ int solution() {
 			E += min_dist;
 			tx = target->ex;
 			ty = target->ey;
-			//cout << tx + 1 << ", " << ty + 1 << endl;
 		}
 
 		man.erase(target);
@@ -122,7 +147,8 @@ int solution() {
 
 void solve() {
 	init();
-	cout << solution() << endl;
+	int answer = solution();
+	cout << answer << endl;
 }
 
 int main() {
