@@ -42,6 +42,7 @@
 	- [Programmers 42895번 : N으로 표현](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_42895_U.cpp)  
 	- [HackerRank : Viral Advertising](https://github.com/daerong/Algorithm_Practice/blob/master/hackerrank/Daeseong/viral_advertising_U.cpp)  
 	- [SW Expert Acdemy 1244번 : 최대 상금](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_1244_U.cpp)  
+	- [BAEKJOON 11049번 : 행렬 곱셈 순서](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/11049_U.cpp)  
 
 ### Binary Search  
 - Description
