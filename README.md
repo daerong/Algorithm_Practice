@@ -45,6 +45,7 @@
 	- [BAEKJOON 11049번 : 행렬 곱셈 순서](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/11049_U.cpp)  
 	- [BAEKJOON 1520번 : 내리막 길](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/1520_U.cpp)  
 	- [BAEKJOON 1937번 : 욕심쟁이 판다](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/1937_U.cpp)  
+	- [BAEKJOON 11054번 : 가장 긴 바이토닉 부분 수열](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/11054_U.cpp)  
 
 ### Binary Search  
 - Description
