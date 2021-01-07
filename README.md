@@ -48,6 +48,7 @@
 	- [BAEKJOON 11054번 : 가장 긴 바이토닉 부분 수열](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/11054_U.cpp)  
 	- [BAEKJOON 2411번 : 아이템 먹기](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/2411_U.cpp)  
 	- [BAEKJOON 1577번 : 도로의 개수](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/1577_U.cpp)  
+	- [BAEKJOON 5502번 : 펠린드롬](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/5502_U.cpp)  
 
 ### Binary Search  
 - Description
