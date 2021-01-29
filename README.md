@@ -91,6 +91,7 @@
 	- [Programmers 12952번 : N-Queen](https://github.com/daerong/Algorithm_Practice/blob/master/programmers/Daeseong/programmers_12952_U.cpp) 
 	- [BAEKJOON 1987번 : 알파벳](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/1987_U.cpp)   
 	- [BAEKJOON 15686번 : 치킨배달](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/15686_U.cpp)   
+	- [BAEKJOON 1967번 : 트리의 지름](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/1967_U.cpp)   
 
 ### Kruskal's Algorithm  
 - [Description](https://github.com/daerong/Basic_Learning/blob/master/Algorithm/Kruskal_Algorithm.md)  
