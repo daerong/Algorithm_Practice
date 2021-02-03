@@ -95,6 +95,12 @@
 	- [BAEKJOON 1967번 : 트리의 지름](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/1967_U.cpp) 
 	- [BAEKJOON 13459번 : 구슬 탈출](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/13459_U.cpp) 
 
+### Union-Find
+- Description
+- Keywords
+- Examples
+	- [BAEKJOON 2606번 : 바이러스](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/2606_U.cpp) 
+
 ### Kruskal's Algorithm  
 - [Description](https://github.com/daerong/Basic_Learning/blob/master/Algorithm/Kruskal_Algorithm.md)  
 - Keywords  
