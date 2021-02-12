@@ -310,7 +310,14 @@
 	- vector<vector<struct>>, vector<struct>, vector.erase(), vector::iterator
 	- 특이사항 : 흔적이 남는 것을 구현하기 위해 turn을 기록하는 방식을 사용    
 - [스타트 택시](https://www.acmicpc.net/problem/19238)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/19238_U.cpp)  
+	- Failed 1 : 출발지를 기준으로 승객 순서를 정렬해야하는데 도착지를 기준으로 정렬해버림.
+	- vector<vector<int>>, vector<vector<bool>>, vector<struct>
+	- 특이사항 : 최단거리를 찾는 시뮬레이션 문제.    
 - [컨베이어 벨트 위의 로봇](https://www.acmicpc.net/problem/20055)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/20055_U.cpp)  
+	- vector<struct>  
+	- 특이사항 : 배열의 시작 인덱스를 바꾸면서 풀어야함.    
 - [마법사 상어와 파이어볼](https://www.acmicpc.net/problem/20056)  
 - [마법사 상어와 토네이도](https://www.acmicpc.net/problem/20057)  
 - [마멉사 상어와 파이어스톰](https://www.acmicpc.net/problem/20058)  
