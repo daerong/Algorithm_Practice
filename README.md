@@ -322,8 +322,7 @@
 - [마법사 상어와 토네이도](https://www.acmicpc.net/problem/20057)  
 - [마멉사 상어와 파이어스톰](https://www.acmicpc.net/problem/20058)  
 
-#### 삼성 Pro 시험 대비
-- [BAEKJOON 3425번 : 고스택]
-- [BAEKJOON 3055번 : 탈출]
-- [BAEKJOON 1062번 : 가르침]
-- [BAEKJOON 1713번 : 후보 추천하기]
+#### SW Expert Academy (삼성 역량테스트)
+- [틱택톰](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AXeJGPgqR9cDFAS5)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_11545_%ED%8B%B1%ED%83%9D%ED%86%B0_U.cpp)  
+	- 비트마스크 사용
