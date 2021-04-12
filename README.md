@@ -326,3 +326,6 @@
 - [틱택톰](https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AXeJGPgqR9cDFAS5)   
 	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_11545_%ED%8B%B1%ED%83%9D%ED%86%B0_U.cpp)  
 	- 비트마스크 사용
+- [Ladder1]https://swexpertacademy.com/main/code/problem/problemDetail.do?contestProbId=AV14ABYKADACFAYh)   
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/swea/Daeseong/swea_1210_Ladder1_U.cpp)  
+	- 2에서부터 역으로 path 찾기
