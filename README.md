@@ -319,6 +319,9 @@
 	- vector<struct>  
 	- 특이사항 : 배열의 시작 인덱스를 바꾸면서 풀어야함.    
 - [마법사 상어와 파이어볼](https://www.acmicpc.net/problem/20056)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/20055_U.cpp)  
+	- vector<struct>  
+	- 특이사항 : vector<struct>하나로 해결하려면 머리깨짐 vector<struct> map[][] 만들어서 해결하기.  
 - [마법사 상어와 토네이도](https://www.acmicpc.net/problem/20057)  
 - [마멉사 상어와 파이어스톰](https://www.acmicpc.net/problem/20058)  
 
