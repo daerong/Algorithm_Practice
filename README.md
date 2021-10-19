@@ -319,10 +319,14 @@
 	- vector<struct>  
 	- 특이사항 : 배열의 시작 인덱스를 바꾸면서 풀어야함.    
 - [마법사 상어와 파이어볼](https://www.acmicpc.net/problem/20056)  
-	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/20055_U.cpp)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/20056_U.cpp)  
 	- vector<struct>  
 	- 특이사항 : vector<struct>하나로 해결하려면 머리깨짐 vector<struct> map[][] 만들어서 해결하기.  
 - [마법사 상어와 토네이도](https://www.acmicpc.net/problem/20057)  
+	- [풀이](https://github.com/daerong/Algorithm_Practice/blob/master/baekjoon/Daeseong/20057_U.cpp)  
+	- vector<vector<map>> 
+	- Failed 1 : scatter 함수 인자로 vector<vector<int>> cp_map, vector<vector<int>> 두개를 사용했으나 timeover뜸. 하나로 쓰기.
+	- 특이사항 : 전형적인 맵구현 문제
 - [마멉사 상어와 파이어스톰](https://www.acmicpc.net/problem/20058)  
 
 #### SW Expert Academy (삼성 역량테스트)
