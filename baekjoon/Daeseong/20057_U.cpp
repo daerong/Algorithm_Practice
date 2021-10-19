@@ -1,121 +1,96 @@
 #include <iostream>
 #include <vector>
 
-#define MAX 51
-#define endl "\n"
 using namespace std;
 
-typedef struct FB {
-    int x;
-    int y;
-    int m;
-    int s;
-    int d;
-} FB;
+#define endl '\n'
 
-int dy[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
-int dx[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
+int answer = 0;
+int N;
+int Cx;
+int Cy;
+int dx[] = { -1, 0, 1, 0 };
+int dy[] = { 0, 1, 0, -1 };
+double constantX[] = { 0.01, 0.01, 0.02, 0.02, 0.05, 0.07, 0.07, 0.1, 0.1 };
+int xLocate[4][9] = { { 1, 1, 0, 0, -2, 0, 0, -1, -1 }, {-1, 1, -2, 2, 0, -1, 1, -1, 1}, {-1, -1, 0, 0, 2, 0, 0, 1, 1}, {1, -1, 2, -2, 0, 1, -1, 1, -1} };
+int yLocate[4][9] = { { 1, -1, 2, -2, 0, 1, -1, 1, -1 }, {-1, -1, 0, 0, 2, 0, 0, 1, 1}, {-1, 1, -2, 2, 0, -1, 1, -1, 1}, {1, 1, 0, 0, -2, 0, 0, -1, -1} };
 
-int N, M, K;
-vector<FB> map[MAX][MAX];
-vector<FB> fb;
+vector<vector<int>> input() {
+	vector<vector<int>> map;
+	cin >> N;
+	Cx = Cy = N / 2;
+	int temp;
+	for (int y = 0; y < N; y++) {
+		vector<int> line;
+		for (int x = 0; x < N; x++) {
+			cin >> temp;
+			line.push_back(temp);
+		}
+		map.push_back(line);
+	}
 
-void input() {
-    cin >> N >> M >> K;
-    for (int i = 0; i < M; i++) {
-        int r, c, m, s, d;
-        cin >> r >> c >> m >> s >> d;
-        fb.push_back({ c, r, m, s, d });
-        map[r][c].push_back({ c, r, m, s, d });
-    }
+	return map;
 }
 
-void move() {
-    for (int ny = 1; ny <= N; ny++) {
-        for (int nx = 1; nx <= N; nx++) {
-            map[ny][nx].clear();
-        }
-    }
+void scatter(int target, vector<vector<int>>& map, int dir) {
+	int sum = 0;
 
-    for (vector<FB>::iterator iter = fb.begin(); iter < fb.end(); iter++) {
-        int ns = iter->s % N;
+	map[Cy][Cx] = 0;
 
-        int nx = iter->x + dx[iter->d] * ns;
-        if (nx > N) nx -= N;
-        if (nx <= 0) nx += N;
-        int ny = iter->y + dy[iter->d] * ns;
-        if (ny > N) ny -= N;
-        if (ny <= 0) ny += N;
+	for (int i = 0; i < 9; i++) {
+		int vol = target * constantX[i];
+		int nx = Cx + xLocate[dir][i];
+		int ny = Cy + yLocate[dir][i];
+		if (nx < 0 || nx >= N || ny < 0 || ny >= N) answer += vol;
+		else map[ny][nx] += vol;
+		sum += vol;
+	}
 
-        map[nx][ny].push_back({ nx, ny, iter->m, iter->s, iter->d });
-        iter->x = nx;
-        iter->y = ny;
-    }
-}
-
-void crush() {
-    vector<FB> temp;
-    for (int ny = 1; ny <= N; ny++) {
-        for (int nx = 1; nx <= N; nx++) {
-            if (map[ny][nx].size() == 1) {
-                temp.push_back(map[ny][nx][0]);
-                continue;
-            }
-            else {
-                int mSum = 0;
-                int sSum = 0;
-                int cnt = map[ny][nx].size();
-                bool isEven = false;
-                bool isOdd = false;
-                for (int k = 0; k < map[ny][nx].size(); k++) {
-                    mSum += map[ny][nx][k].m;
-                    sSum += map[ny][nx][k].s;
-                    switch (map[ny][nx][k].d % 2) {
-                    case 0:
-                        isEven = true;
-                        break;
-                    case 1:
-                        isOdd = true;
-                        break;
-                    }
-                }
-
-                int newM = mSum / 5;
-                if (newM == 0) continue;
-                int newS = sSum / cnt;
-
-                if (isEven && isOdd) {
-                    for (int k = 1; k < 8; k += 2) temp.push_back({ ny, nx, newM, newS, k });
-                }
-                else {
-                    for (int k = 0; k < 8; k += 2) temp.push_back({ ny, nx, newM, newS, k });
-                }
-            }
-        }
-    }
-    fb = temp;
+	int nnx = Cx + dx[dir];
+	int nny = Cy + dy[dir];
+	int alpha = target - sum;
+	if (nnx < 0 || nnx >= N || nny < 0 || nny >= N) answer += alpha;
+	else map[nny][nnx] += alpha;
 }
 
 void solve() {
-    input();
+	vector<vector<int>> map = input();
+	int dir = 0;
+	int xMin, xMax, yMax, yMin;
+	yMax = yMin = xMax = xMin = N / 2;
 
-    for (int i = 0; i < K; i++) {
-        move();
-        crush();
-    }
+	for (int i = 0; i < N * N - 1; i++) {
+		Cx += dx[dir];
+		Cy += dy[dir];
+		scatter(map[Cy][Cx], map, dir);
 
-    int Answer = 0;
-    for (vector<FB>::iterator iter = fb.begin(); iter < fb.end(); iter++) Answer += iter->m;
+		if (Cx < xMin) {
+			xMin = Cx;
+			dir = (dir + 1) % 4;
+		}
+		else if (Cx > xMax) {
+			xMax = Cx;
+			dir = (dir + 1) % 4;
+		}
+		else if (Cy < yMin) {
+			yMin = Cy;
+			dir = (dir + 1) % 4;
+		}
+		else if (Cy > yMax) {
+			yMax = Cy;
+			dir = (dir + 1) % 4;
+		}
+	}
 
-    cout << Answer << endl;
+	cout << answer << endl;
 }
 
-int main(void) {
-    ios::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 
-    solve();
+	solve();
 
-    return 0;
+	return 0;
 }
